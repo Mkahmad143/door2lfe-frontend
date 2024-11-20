@@ -6,23 +6,22 @@ import {
   AccordionTrigger,
 } from "../../components/ui/accordion";
 import faqs from "./faqData";
-import Footer from "../Footer/Footer";
 
 const Faqs = () => {
   return (
     <>
       <div></div>
-      <div className="flex justify-center text-white flex-col w-screen mx-auto text-3xl mt-20">
-        <h1 className="text-6xl text-center ">FAQ'S </h1>
+      <div className="flex flex-col justify-center w-screen mx-auto mt-20 text-3xl text-white">
+        <h1 className="mt-16 text-6xl text-center">FAQ'S </h1>
         {faqs.map((comp, i) => (
           <Accordion
             key={i}
             type="single"
             collapsible
-            className="w-[18rem] sm:w-[35rem] md:w-[45rem] lg:[w-55rem] mx-auto"
+            className="w-[18rem] sm:w-[35rem] md:w-[45rem] lg:[w-60rem] mx-auto mt-8"
           >
             <AccordionItem value={`item-${i}`} className="text-4xl ">
-              <AccordionTrigger className="text-[1rem]">
+              <AccordionTrigger className="text-sm md:text-[1rem]">
                 {comp.question}
               </AccordionTrigger>
               <AccordionContent className=" text-lightgray">

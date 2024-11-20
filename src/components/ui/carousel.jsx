@@ -130,8 +130,8 @@ const CarouselContent = React.forwardRef(({ className, ...props }, ref) => {
       <div
         ref={ref}
         className={cn(
-          "flex aspect-video w-[80vw] h-[90vh]",
-          orientation === "horizontal" ? "-ml-4" : "-mt-4 flex-col",
+          "flex   h-[20rem] gap-4 mt-[15rem] w-auto lg:h-[110vh] lg:mt-0 ",
+          orientation === "horizontal" ? "-ml-4 lg:-ml-16" : "-mt-4 flex-col",
           className
         )}
         {...props}
@@ -180,7 +180,7 @@ const CarouselPrevious = React.forwardRef(
         onClick={scrollPrev}
         {...props}
       >
-        <ArrowLeft className="h-4 w-4" />
+        <ArrowLeft className="w-4 h-4" />
         <span className="sr-only">Previous slide</span>
       </Button>
     );
@@ -208,7 +208,7 @@ const CarouselNext = React.forwardRef(
         onClick={scrollNext}
         {...props}
       >
-        <ArrowRight className="h-4 w-4" />
+        <ArrowRight className="w-4 h-4" />
         <span className="sr-only">Next slide</span>
       </Button>
     );

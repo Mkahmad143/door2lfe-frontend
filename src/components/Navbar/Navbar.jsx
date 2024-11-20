@@ -1,18 +1,11 @@
 import React, { useState } from "react";
 
-import {
-  NavigationMenu,
-  NavigationMenuContent,
-  NavigationMenuItem,
-  NavigationMenuLink,
-  NavigationMenuList,
-  NavigationMenuTrigger,
-} from "@/components/ui/navigation-menu";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-
+import logo from "/logo.png";
 import { Link, useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
+import Translator from "../Language/Translator";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -112,31 +105,31 @@ const Navbar = () => {
             </div>
 
             <div className="flex space-x-6">
-              <div className="hidden px-4 py-1 transition-colors duration-300 rounded-md hover:bg-lightgreen hover:text-black sm:block">
+              <div className="hidden px-4 py-1 transition-colors duration-300 rounded-md hover:bg-lightgreen hover:text-black md:block">
                 <Link
                   to="/"
                   className="text-white cursor-pointer hover:text-white"
                 >
-                  HOME LOGO
+                  <img src={logo} alt="logo" className="h-6 " />
                 </Link>
               </div>
 
               <Link
                 to="/belief"
-                className="hidden px-4 py-1 transition-colors duration-300 rounded-md cursor-pointer text-lightgray hover:bg-black hover:text-white sm:block"
+                className="hidden px-4 py-1 transition-colors duration-300 rounded-md cursor-pointer text-lightgray hover:bg-black hover:text-white md:block"
               >
                 READ BELIEFS
               </Link>
 
               <Link
                 to="/contact"
-                className="hidden px-4 py-1 transition-colors duration-300 rounded-md cursor-pointer text-lightgray hover:bg-black hover:text-white sm:block"
+                className="hidden px-4 py-1 transition-colors duration-300 rounded-md cursor-pointer text-lightgray hover:bg-black hover:text-white md:block"
               >
                 CONTACT
               </Link>
               <Link
                 to="/faqs"
-                className="hidden px-4 py-1 transition-colors duration-300 rounded-md cursor-pointer text-lightgray hover:bg-black hover:text-white sm:block"
+                className="hidden px-4 py-1 transition-colors duration-300 rounded-md cursor-pointer text-lightgray hover:bg-black hover:text-white md:block"
               >
                 FAQs
               </Link>
@@ -165,65 +158,56 @@ const Navbar = () => {
             )}
 
             <div className="hidden sm:block">
-              <NavigationMenu>
-                <NavigationMenuList>
-                  <NavigationMenuItem>
-                    <NavigationMenuTrigger className="text-white bg-gray">
-                      EN
-                    </NavigationMenuTrigger>
-                    <NavigationMenuContent className="p-2">
-                      <NavigationMenuLink className="text-sm text-black cursor-pointer">
-                        Español
-                      </NavigationMenuLink>
-                    </NavigationMenuContent>
-                  </NavigationMenuItem>
-                </NavigationMenuList>
-              </NavigationMenu>
+              <Translator />
             </div>
 
             {/* Sidebar for Mobile */}
             <div
               className={`${
-                isOpen ? "translate-x-0" : "-translate-x-full"
-              } rounded-sm w-full md:w-auto fixed top-0 left-0 h-full transition-transform duration-500 ease-in-out bg-slate-800 p-4`}
-              style={{ width: "250px" }}
+                isOpen
+                  ? "-translate-y-0 top-16 h-max"
+                  : "-translate-y-full top-0"
+              } rounded-sm w-screen md:w-auto fixed  left-0  transition-transform duration-500 ease-in-out bg-lightgray p-4`}
             >
-              <div className="flex flex-col p-2 mt-8 space-y-4">
+              <div className="flex flex-col p-2 mt-8 space-y-4 text-center">
                 <Link
                   to="/"
-                  className="block text-white cursor-pointer hover:text-white"
+                  className="block cursor-pointer text-gray hover:text-gray"
                   onClick={() => setIsOpen(!isOpen)}
                 >
                   HOME
                 </Link>
                 <Link
                   to="/faqs"
-                  className="block text-white cursor-pointer hover:text-white"
+                  className="block cursor-pointer text-gray hover:text-gray"
                   onClick={() => setIsOpen(!isOpen)}
                 >
                   FAQ's
                 </Link>
                 <Link
                   to="/belief"
-                  className="block text-white cursor-pointer hover:text-white"
+                  className="block cursor-pointer text-gray hover:text-gray"
                   onClick={() => setIsOpen(!isOpen)}
                 >
                   READ BELIEFS
                 </Link>
                 <Link
                   to="/contact"
-                  className="block text-white cursor-pointer hover:text-white"
+                  className="block cursor-pointer text-gray hover:text-gray"
                   onClick={() => setIsOpen(!isOpen)}
                 >
                   CONTACT
                 </Link>
                 <Link
                   to="/belief"
-                  className="block text-white cursor-pointer hover:text-white"
+                  className="block cursor-pointer text-gray hover:text-gray"
                   onClick={() => setIsOpen(!isOpen)}
                 >
                   DONATIONS
                 </Link>
+              </div>
+              <div className="flex justify-center mt-2 md:hidden">
+                <Translator />
               </div>
             </div>
           </div>

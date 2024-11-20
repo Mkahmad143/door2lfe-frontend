@@ -8,12 +8,12 @@ import {
   CarouselPrevious,
 } from "@/components/ui/carousel";
 
-const images = ["A4.png", "A2.webp", "A3.webp", "A23.avif", "A6.avif"];
+const images = ["slide1.jpg", "slide2.jpg", "slide3.jpg"];
 
 const CarouselComponent = () => {
   return (
-    <div className="min-w-screen h-screen flex items-center justify-center xl:pt-[3rem]">
-      <CarouselUI className="aspect-video">
+    <div className="w-screen h-screen mt-10 flex items-center justify-center xl:pt-[1em]  sm:px-0">
+      <CarouselUI className=" w-screen  h-[100vh] mx-auto aspect-video">
         {/* Full width with a max width */}
         <CarouselContent>
           {images.map((img, index) => (
@@ -24,13 +24,13 @@ const CarouselComponent = () => {
               <img
                 src={img}
                 alt={`carousel-image-${index}`}
-                className="w-full h-auto"
+                className="h-screen min-w-screen object"
               />
             </CarouselItem>
           ))}
         </CarouselContent>
-        <CarouselPrevious />
-        <CarouselNext />
+        <CarouselPrevious className="absolute p-2 text-white transform -translate-y-1/2 bg-black bg-opacity-50 rounded-full left-2 top-1/2" />
+        <CarouselNext className="absolute p-2 text-white transform -translate-y-1/2 bg-black bg-opacity-50 rounded-full right-2 top-1/2" />
       </CarouselUI>
     </div>
   );
