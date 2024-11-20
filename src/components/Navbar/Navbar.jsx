@@ -67,8 +67,8 @@ const Navbar = () => {
         </nav>
       ) : (
         <>
-          <div className="fixed top-0 left-0 z-20 flex items-center justify-between w-full px-6 py-4 bg-white shadow-md bg-opacity-20 backdrop-blur-md">
-            <div className="z-20 flex items-center ml-2">
+          <div className="fixed top-0 left-0 z-20 flex items-center w-full px-6 py-4 bg-white shadow-md bg-opacity-20 backdrop-blur-md">
+            <div className="z-20 flex items-center ">
               <button onClick={() => setIsOpen(!isOpen)}>
                 {isOpen ? (
                   <svg
@@ -104,7 +104,7 @@ const Navbar = () => {
               </button>
             </div>
 
-            <div className="flex space-x-6">
+            <div className="flex items-center ">
               <div className="hidden px-4 py-1 transition-colors duration-300 rounded-md hover:bg-lightgreen hover:text-black md:block">
                 <Link
                   to="/"
@@ -118,7 +118,7 @@ const Navbar = () => {
                 to="/belief"
                 className="hidden px-4 py-1 transition-colors duration-300 rounded-md cursor-pointer text-lightgray hover:bg-black hover:text-white md:block"
               >
-                READ BELIEFS
+                BELIEFS
               </Link>
 
               <Link
@@ -145,7 +145,7 @@ const Navbar = () => {
                 </Link>
               </div>
             ) : (
-              <div className="flex items-center space-x-4">
+              <div className="flex items-center ml-auto space-x-4">
                 <Link to="/login">
                   <Button className="text-black bg-lightgray hover:bg-darkgreen">
                     Login
@@ -157,7 +157,7 @@ const Navbar = () => {
               </div>
             )}
 
-            <div className="hidden sm:block">
+            <div className="hidden ml-6 sm:block">
               <Translator />
             </div>
 

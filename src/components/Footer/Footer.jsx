@@ -8,9 +8,9 @@ const Footer = () => {
           © {new Date().getFullYear()} Admin Panel. All rights reserved.
         </footer>
       ) : (
-        <footer className="w-full py-10 text-white md:mt-16">
-          <div className="container px-4 mx-auto border-t-[.08rem] ">
-            <div className="grid grid-cols-1 gap-8 pt-6 sm:grid-cols-2 lg:grid-cols-3">
+        <footer className="w-full py-10 mx-auto text-white md:mt-16">
+          <div className=" flex  justify-center flex-col items-center  border-t-[.08rem] border-b-[.08rem]  ">
+            <div className="grid grid-cols-1 gap-12 pt-6 sm:grid-cols-2 lg:grid-cols-4 ">
               {/* Product Section */}
               <div className="space-y-4">
                 <h2 className="mb-4 text-xl font-bold">Product</h2>
@@ -95,7 +95,23 @@ const Footer = () => {
                     </a>
                   </li>
                 </ul>
+              </div>
 
+              {/* Links Section */}
+              <div className="space-y-4">
+                <h2 className="mb-4 text-xl font-bold">Links</h2>
+                <ul className="space-y-2">
+                  <li>
+                    <a
+                      href="#"
+                      className="transition duration-300 hover:text-lightgreen"
+                    >
+                      Policies
+                    </a>
+                  </li>
+                </ul>
+              </div>
+              <div className="space-y-4">
                 <h2 className="mb-4 text-xl font-bold">PARA</h2>
                 <ul className="space-y-2">
                   <li>
@@ -116,25 +132,10 @@ const Footer = () => {
                   </li>
                 </ul>
               </div>
-
-              {/* Links Section */}
-              <div className="space-y-4">
-                <h2 className="mb-4 text-xl font-bold">Links</h2>
-                <ul className="space-y-2">
-                  <li>
-                    <a
-                      href="#"
-                      className="transition duration-300 hover:text-lightgreen"
-                    >
-                      Policies
-                    </a>
-                  </li>
-                </ul>
-              </div>
             </div>
 
             {/* Legal Section */}
-            <div className="pt-4 mt-8 text-sm text-center text-gray-400 border-t">
+            <div className="py-4 mt-8 text-sm text-center text-gray-400 ">
               <p>© 2024 Your Company Name. All rights reserved.</p>
             </div>
           </div>

@@ -130,7 +130,7 @@ const CarouselContent = React.forwardRef(({ className, ...props }, ref) => {
       <div
         ref={ref}
         className={cn(
-          "flex   h-[20rem] gap-4 mt-[15rem] w-auto lg:h-[110vh] lg:mt-0 ",
+          "flex   h-[20rem] gap-4 mt-4 sm:mt-16 w-auto lg:h-[100vh] lg:mt-0 ",
           orientation === "horizontal" ? "-ml-4 lg:-ml-16" : "-mt-4 flex-col",
           className
         )}
@@ -161,7 +161,7 @@ const CarouselItem = React.forwardRef(({ className, ...props }, ref) => {
 CarouselItem.displayName = "CarouselItem";
 
 const CarouselPrevious = React.forwardRef(
-  ({ className, variant = "", size = "", ...props }, ref) => {
+  ({ className, variant = "desctructive", size = "", ...props }, ref) => {
     const { orientation, scrollPrev, canScrollPrev } = useCarousel();
 
     return (
@@ -170,7 +170,7 @@ const CarouselPrevious = React.forwardRef(
         variant={variant}
         size={size}
         className={cn(
-          "absolute  h-8 w-8 rounded-full",
+          "absolute opacity-30  h-8 w-8 ",
           orientation === "horizontal"
             ? "-left-12 top-1/2 -translate-y-1/2"
             : "-top-12 left-1/2 -translate-x-1/2 rotate-90",
@@ -189,7 +189,7 @@ const CarouselPrevious = React.forwardRef(
 CarouselPrevious.displayName = "CarouselPrevious";
 
 const CarouselNext = React.forwardRef(
-  ({ className, variant = "outline", size = "icon", ...props }, ref) => {
+  ({ className, variant = "desctructive", size = "", ...props }, ref) => {
     const { orientation, scrollNext, canScrollNext } = useCarousel();
 
     return (
@@ -198,7 +198,7 @@ const CarouselNext = React.forwardRef(
         variant={variant}
         size={size}
         className={cn(
-          "absolute h-8 w-8 rounded-full",
+          "absolute opacity-30 h-8 w-8 ",
           orientation === "horizontal"
             ? "-right-12 top-1/2 -translate-y-1/2"
             : "-bottom-12 left-1/2 -translate-x-1/2 rotate-90",
