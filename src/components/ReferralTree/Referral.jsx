@@ -138,7 +138,7 @@ const ReferralTree = () => {
         <div className="flex flex-col items-center justify-center w-full">
           <h2 className="mx-auto text-4xl text-white">Referral Tree</h2>
           <h2 className="mx-auto mt-2 text-sm text-center text-lightgray">
-            Send donations request to your 3rd Generation
+            Send donations request to your 3rd Generation By Clicking on it
           </h2>
         </div>
         {referralTree ? (
