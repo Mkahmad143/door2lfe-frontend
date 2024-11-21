@@ -87,7 +87,7 @@ const SingleUserData = () => {
 
           {/* Loading */}
           {loading && (
-            <p className="text-center text-blue-500 animate-pulse">
+            <p className="text-center text-blue-500 animate-bounce">
               Loading...
             </p>
           )}
@@ -113,7 +113,7 @@ const SingleUserData = () => {
                 </p>
                 <p className="flex items-center gap-2 text-gray-600">
                   <FaCoins />
-                  <strong>Donation Amount:</strong> ${userData.donationAmount}
+                  <strong>Donation Amount:</strong> ${userData.amount}
                 </p>
               </div>
 
