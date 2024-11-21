@@ -4,9 +4,11 @@ import { FaUserCircle } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import Footer from "../UI/Footer";
 import Navbar from "../UI/Navbar";
+import { useTranslation } from "react-i18next"; // Import translation hook
 
 const Transactions = () => {
   const [user, setUser] = useState([]);
+  const { t } = useTranslation(); // Initialize translation hook
 
   useEffect(() => {
     const fetchTransactions = async () => {
@@ -16,7 +18,6 @@ const Transactions = () => {
         );
         if (response.status === 200) {
           setUser(response.data);
-          console.log(user);
         } else {
           setUser([]);
         }
@@ -27,32 +28,34 @@ const Transactions = () => {
     };
     fetchTransactions();
   }, []);
+
   const formatDate = (dateString) => {
-    const options = { year: "numeric", month: "long", day: "numeric" }; // Example: November 14, 2024
+    const options = { year: "numeric", month: "long", day: "numeric" };
     const date = new Date(dateString);
     return new Intl.DateTimeFormat("en-US", options).format(date);
   };
+
   return (
     <>
       <Navbar />
       <div className="relative flex flex-col items-center justify-center min-h-screen p-6 bg-gray-100">
         <Link to={"/admin/dashboard/mainBank"}>
           <h1 className="top-0 left-0 px-4 py-2 mx-16 text-white bg-blue-600 rounded-lg md:absolute my-7">
-            Go Back
+            {t("goBack")} {/* Translated text */}
           </h1>
         </Link>
         <div className="w-full max-h-[70vh] overflow-y-scroll max-w-4xl bg-lightgray rounded-lg shadow-lg">
           <div className="p-6 border-b">
             <h1 className="text-2xl font-bold text-gray-800">
-              Recent Transactions
+              {t("recentTransactions")} {/* Translated text */}
             </h1>
             <p className="text-sm text-gray-500">
-              Stay updated with your latest activity
+              {t("stayUpdated")} {/* Translated text */}
             </p>
           </div>
 
           {user.length > 0 ? (
-            <div className="divide-y ">
+            <div className="divide-y">
               {user.map((txn) => (
                 <div
                   key={txn.id}
@@ -61,11 +64,9 @@ const Transactions = () => {
                   {/* Profile Section */}
                   <div className="flex flex-col items-center gap-4 sm:flex-row">
                     <FaUserCircle className="w-12 h-12 border rounded-full" />
-
                     <div>
                       <h3 className="font-bold text-gray-800">{txn.name}</h3>
                       <p className="text-sm text-gray-500">
-                        {" "}
                         {formatDate(txn.date)}
                       </p>
                     </div>
@@ -73,7 +74,7 @@ const Transactions = () => {
 
                   {/* Amount Section */}
                   <div>
-                    <span className={`text-lg`}>{txn.email}</span>
+                    <span className="text-lg">{txn.email}</span>
                   </div>
                   <div>
                     <span
@@ -91,7 +92,7 @@ const Transactions = () => {
             </div>
           ) : (
             <div className="p-6 text-center text-gray-500">
-              No transactions available.
+              {t("noTransactions")} {/* Translated text */}
             </div>
           )}
         </div>

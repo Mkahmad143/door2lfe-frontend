@@ -6,14 +6,14 @@ import es from "./locales/es.json"; // Your Spanish translations
 i18n.use(initReactI18next).init({
   resources: {
     en: {
-      translation: en, // English translations
+      translation: en,
     },
     es: {
-      translation: es, // Spanish translations
+      translation: es,
     },
   },
-  lng: "en", // Default language (English)
   fallbackLng: "en", // Fallback language if translation is missing
+  lng: "es",
   interpolation: {
     escapeValue: false, // React already does escaping
   },

@@ -6,8 +6,10 @@ import { PopUp } from "../../UI/PopUp";
 import { Dialog, DialogTrigger } from "../ui/dialog";
 import Footer from "../Footer/Footer";
 import Navbar from "../Navbar/Navbar";
+import { useTranslation } from "react-i18next"; // Import useTranslation hook
 
 const ReferralTree = () => {
+  const { t, i18n } = useTranslation(); // Initialize translation
   const [referralTree, setReferralTree] = useState(null);
   const [doorStatus, setDoorStatus] = useState({});
 
@@ -42,7 +44,6 @@ const ReferralTree = () => {
     displayedCount++;
 
     const referralsCount = 15;
-    console.log(referralsCount);
     const isTier4With15Members = tier === 4 && referralsCount;
 
     const { renderedNodes: childNodes, displayedCount: updatedCount } =
@@ -124,21 +125,23 @@ const ReferralTree = () => {
             <p className="bg-[#154c42] w-4 h-4 rounded-full"></p>
           </div>
           <div className="px-2 -ml-16 test-gray">
-            <h1>Founder</h1>
-            <h1>1st Gen</h1>
-            <h1>2nd Gen</h1>
-            <h1>3rd Gen</h1>
+            <h1>{t("Founder")}</h1>
+            <h1>{t("1st Gen")}</h1>
+            <h1>{t("2nd Gen")}</h1>
+            <h1>{t("3rd Gen")}</h1>
           </div>
         </div>
         <Link to={"/userpage"}>
           <h1 className="left-0 px-4 py-2 mx-16 text-white bg-blue-600 rounded-lg md:absolute my-7">
-            Go Back
+            {t("Go Back")}
           </h1>
         </Link>
         <div className="flex flex-col items-center justify-center w-full">
-          <h2 className="mx-auto text-4xl text-white">Referral Tree</h2>
+          <h2 className="mx-auto text-4xl text-white">{t("Referral Tree")}</h2>
           <h2 className="mx-auto mt-2 text-sm text-center text-lightgray">
-            Send donations request to your 3rd Generation By Clicking on it
+            {t(
+              "Send donations request to your 3rd Generation By Clicking on it"
+            )}
           </h2>
         </div>
         {referralTree ? (

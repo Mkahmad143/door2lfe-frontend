@@ -6,9 +6,11 @@ import logo from "/logo.png";
 import { Link, useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import Translator from "../Language/Translator";
+import { useTranslation } from "react-i18next";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const { t } = useTranslation();
 
   const navigate = useNavigate();
 
@@ -81,41 +83,41 @@ const Navbar = () => {
               to="/belief"
               className="hidden px-4 py-1 transition-colors duration-300 rounded-md cursor-pointer text-lightgray hover:bg-black hover:text-white md:block"
             >
-              BELIEFS
+              {t("navbar.beliefs")}
             </Link>
 
             <Link
               to="/contact"
               className="hidden px-4 py-1 transition-colors duration-300 rounded-md cursor-pointer text-lightgray hover:bg-black hover:text-white md:block"
             >
-              CONTACT
+              {t("navbar.contact")}
             </Link>
             <Link
               to="/faqs"
               className="hidden px-4 py-1 transition-colors duration-300 rounded-md cursor-pointer text-lightgray hover:bg-black hover:text-white md:block"
             >
-              FAQs
+              {t("navbar.faqs")}
             </Link>
           </div>
 
           {sessionStorage.getItem("token") ? (
             <div className="flex items-center ml-auto space-x-4">
               <Link to="/userpage">
-                <Button>My Account</Button>
+                <Button> {t("navbar.myAccount")}</Button>
               </Link>
               <Link to="/userpage">
-                <Button onClick={handleLogout}>Logout</Button>
+                <Button onClick={handleLogout}> {t("navbar.logout")}</Button>
               </Link>
             </div>
           ) : (
             <div className="flex items-center ml-auto space-x-4">
               <Link to="/login">
                 <Button className="text-black bg-lightgray hover:bg-darkgreen">
-                  Login
+                  {t("navbar.login")}
                 </Button>
               </Link>
               <Link to="/register">
-                <Button>Register</Button>
+                <Button> {t("navbar.register")}</Button>
               </Link>
             </div>
           )}
@@ -136,35 +138,28 @@ const Navbar = () => {
                 className="block cursor-pointer text-gray hover:text-gray"
                 onClick={() => setIsOpen(!isOpen)}
               >
-                HOME
+                {t("navbar.home")}
               </Link>
               <Link
                 to="/faqs"
                 className="block cursor-pointer text-gray hover:text-gray"
                 onClick={() => setIsOpen(!isOpen)}
               >
-                FAQ's
+                {t("navbar.faqs")}
               </Link>
               <Link
                 to="/belief"
                 className="block cursor-pointer text-gray hover:text-gray"
                 onClick={() => setIsOpen(!isOpen)}
               >
-                READ BELIEFS
+                {t("navbar.beliefs")}
               </Link>
               <Link
                 to="/contact"
                 className="block cursor-pointer text-gray hover:text-gray"
                 onClick={() => setIsOpen(!isOpen)}
               >
-                CONTACT
-              </Link>
-              <Link
-                to="/belief"
-                className="block cursor-pointer text-gray hover:text-gray"
-                onClick={() => setIsOpen(!isOpen)}
-              >
-                DONATIONS
+                {t("navbar.contact")}
               </Link>
             </div>
             <div className="flex justify-center mt-2 md:hidden">

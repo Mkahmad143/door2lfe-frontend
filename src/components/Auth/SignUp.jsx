@@ -6,8 +6,10 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import Navbar from "../Navbar/Navbar";
 import Footer from "../Footer/Footer";
+import { useTranslation } from "react-i18next"; // Import useTranslation
 
 const SignUp = () => {
+  const { t } = useTranslation(); // Destructure to get the translation function
   const [name, setName] = useState("");
   const [phone, setPhone] = useState("");
   const [email, setEmail] = useState("");
@@ -31,12 +33,12 @@ const SignUp = () => {
     ) {
       window.paypal
         .Buttons({
-          fundingSource: undefined, // Allows all funding sources, including cards
+          fundingSource: undefined,
           style: {
-            layout: "vertical", // Arrange buttons vertically
-            color: "blue", // Button color
-            shape: "rect", // Button shape
-            label: "paypal", // Default PayPal label
+            layout: "vertical",
+            color: "blue",
+            shape: "rect",
+            label: "paypal",
           },
           createOrder: (data, actions) => {
             return actions.order.create({
@@ -46,7 +48,7 @@ const SignUp = () => {
                   description: "Donations",
                   amount: {
                     currency_code: "USD",
-                    value: 50.0, // Replace with your amount
+                    value: 50.0,
                   },
                 },
               ],
@@ -66,7 +68,7 @@ const SignUp = () => {
           funding: {
             disallowed: [
               window.paypal.FUNDING.VENMO,
-              window.paypal.FUNDING.CARD, // Disallow Pay Later
+              window.paypal.FUNDING.CARD,
             ],
           },
         })
@@ -82,11 +84,11 @@ const SignUp = () => {
 
   useEffect(() => {
     if (!name || !email || !password || !phone) {
-      setError("Please Provide All Data");
+      setError(t("signUp.provideAllData"));
     } else {
       setError("");
     }
-  }, [name, email, password, phone]);
+  }, [name, email, password, phone, t]);
 
   const handleRegister = async () => {
     const registerData = {
@@ -106,7 +108,7 @@ const SignUp = () => {
         ),
         {
           pending: "Registering your account...",
-          success: "Successfully created an account!",
+          success: t("signUp.accountCreated"),
           error: {
             render({ data }) {
               return (
@@ -126,16 +128,12 @@ const SignUp = () => {
         }
       )
       .then(() => {
-        // On success, navigate to login after a delay
         setTimeout(() => {
           navigate("/login");
         }, 2200);
       })
       .catch((error) => {
-        // Handle additional actions on error if needed
-        setError(
-          error?.response?.data?.Error || "An unexpected error occurred."
-        );
+        setError(error?.response?.data?.Error || t("signUp.provideAllData"));
       });
   };
 
@@ -149,7 +147,7 @@ const SignUp = () => {
       <div className="flex items-center justify-center min-h-[90vh] mt-16 py-5 bg-gray-Dark">
         <div className="w-full max-w-md p-8 rounded-lg shadow-lg bg-lightgray">
           <h2 className="mb-6 text-2xl font-bold text-center text-gray-800">
-            Sign Up
+            {t("signUp.title")}
           </h2>
 
           <form className="space-y-4">
@@ -159,16 +157,16 @@ const SignUp = () => {
                 htmlFor="Username"
                 className="block mb-1 font-medium text-gray-700"
               >
-                Username
+                {t("signUp.username")}
               </label>
               <input
                 type="text"
                 id="Username"
                 onChange={(e) => setName(e.target.value)}
                 className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500"
-                placeholder="Enter your Username"
+                placeholder={t("signUp.username")}
               />
-              {error === "Please Provide All Data" ? (
+              {error === t("signUp.provideAllData") ? (
                 <p className="text-red-600 ">{error}</p>
               ) : null}
             </div>
@@ -179,16 +177,16 @@ const SignUp = () => {
                 htmlFor="Phone"
                 className="block mb-1 font-medium text-gray-700"
               >
-                Phone
+                {t("signUp.phone")}
               </label>
               <input
                 type="tel"
                 id="Phone"
                 onChange={(e) => setPhone(e.target.value)}
                 className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500"
-                placeholder="Enter your Phone Number"
+                placeholder={t("signUp.phone")}
               />
-              {error === "Please Provide All Data" && (
+              {error === t("signUp.provideAllData") && (
                 <p className="text-red-600 ">{error}</p>
               )}
             </div>
@@ -199,17 +197,17 @@ const SignUp = () => {
                 htmlFor="Email"
                 className="block mb-1 font-medium text-gray-700"
               >
-                Email
+                {t("signUp.email")}
               </label>
               <input
                 type="email"
                 id="Email"
                 onChange={(e) => setEmail(e.target.value)}
                 className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500"
-                placeholder="Enter your email address"
+                placeholder={t("signUp.email")}
               />
-              {error === "Email Already Exist" ||
-              error === "Please Provide All Data" ? (
+              {error === t("signUp.emailAlreadyExist") ||
+              error === t("signUp.provideAllData") ? (
                 <p className="text-red-600 ">{error}</p>
               ) : null}
             </div>
@@ -220,7 +218,7 @@ const SignUp = () => {
                 htmlFor="password"
                 className="block mb-1 font-medium text-gray-700"
               >
-                Password
+                {t("signUp.password")}
               </label>
               <div className="relative">
                 <input
@@ -229,7 +227,7 @@ const SignUp = () => {
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
                   className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500"
-                  placeholder="Enter your password"
+                  placeholder={t("signUp.password")}
                 />
                 <button
                   type="button"
@@ -239,7 +237,7 @@ const SignUp = () => {
                   {showPassword ? <FaRegEyeSlash /> : <FaRegEye />}
                 </button>
               </div>
-              {error === "Please Provide All Data" && (
+              {error === t("signUp.provideAllData") && (
                 <p className="mt-1 text-red-600">{error}</p>
               )}
             </div>
@@ -250,15 +248,19 @@ const SignUp = () => {
                 htmlFor="paypal"
                 className="block mb-1 font-medium text-gray-700"
               >
-                PayPal
+                {t("signUp.paypal")}
               </label>
               {paymentStatus ? (
-                <p className="text-[#195D49] ">Payment Completed!</p>
+                <p className="text-[#195D49] ">
+                  {t("signUp.paymentCompleted")}
+                </p>
               ) : (
                 <>
                   <div ref={paypalRef}></div>
                   {!paymentStatus ? (
-                    <p className="text-red-600 ">Payment Required!</p>
+                    <p className="text-red-600 ">
+                      {t("signUp.paymentRequired")}
+                    </p>
                   ) : null}
                 </>
               )}
@@ -270,7 +272,7 @@ const SignUp = () => {
                 htmlFor="referralCode"
                 className="block mb-1 font-medium text-gray-700"
               >
-                Referral Code
+                {t("signUp.referralCode")}
               </label>
               <input
                 type="text"
@@ -278,10 +280,9 @@ const SignUp = () => {
                 value={referralCode}
                 onChange={(e) => setReferralCode(e.target.value)}
                 className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500"
-                placeholder="Enter a referral code "
+                placeholder={t("signUp.referralCode")}
               />
-              {error ===
-                "Referral code limit reached. Cannot use this referral code." && (
+              {error === t("signUp.provideAllData") && (
                 <p className="text-red-600 ">{error}</p>
               )}
             </div>
@@ -293,7 +294,7 @@ const SignUp = () => {
                 onClick={handleRegister}
                 className="w-[150px] py-2 px-2 bg-green hover:bg-darkGreen text-black font-semibold rounded-lg transition duration-200 mt-4"
               >
-                Register
+                {t("signUp.register")}
               </button>
             </div>
           </form>
@@ -301,7 +302,7 @@ const SignUp = () => {
           {/* Display the generated referral link after registration */}
           {generatedReferralLink && (
             <div className="mt-4 text-center">
-              <p>Your Referral Link:</p>
+              <p>{t("signUp.referralLink")}</p>
               <p className="text-green-600">{generatedReferralLink}</p>
             </div>
           )}

@@ -15,8 +15,10 @@ import {
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { Link } from "react-router-dom";
+import { useTranslation } from "react-i18next"; // Import useTranslation hook
 
 const Page2 = () => {
+  const { t, i18n } = useTranslation(); // Initialize translation
   const [data, setData] = useState([]);
   const [door, setDoor] = useState({});
   const username = sessionStorage.getItem("username");
@@ -28,7 +30,6 @@ const Page2 = () => {
         const response = await axios.get(
           `https://door2life-backend.vercel.app/api/messages/payment-requests/${userId}`
         );
-        console.log(response.data);
         if (response.status === 200) {
           setData(response.data);
           setDoor(response.data[0].recipient.doorStatus);
@@ -39,6 +40,7 @@ const Page2 = () => {
     };
     request();
   }, []);
+
   const currentDoor =
     (door &&
       Object.entries(door).find(([key, value]) => value === false)?.[0]) ||
@@ -46,8 +48,9 @@ const Page2 = () => {
 
   // Format the door for display
   const formattedDoor = currentDoor
-    ? `Door ${currentDoor}`
-    : "All doors unlocked";
+    ? `${t("Door")} ${currentDoor}`
+    : t("All doors unlocked");
+
   const handleSend = async (id) => {
     const editData = {
       requesterId: userId,
@@ -60,9 +63,9 @@ const Page2 = () => {
         editData
       ),
       {
-        pending: "Marking as paid...",
-        success: "Successfully marked as paid!",
-        error: " Waiting For Payment or Already paid",
+        pending: t("Marking as paid..."),
+        success: t("Successfully marked as paid!"),
+        error: t("Waiting For Payment or Already paid"),
       },
       {
         position: "top-right",
@@ -79,14 +82,14 @@ const Page2 = () => {
   return (
     <>
       <Navbar />
-      <main className="min-h-screen relative w-screen max-w-[80vw] mx-auto  pt-[5rem]">
+      <main className="min-h-screen relative w-screen max-w-[80vw] mx-auto pt-[5rem]">
         <Link to={"/userpage"}>
-          <h1 className="left-0 px-4 py-2 mx-auto text-white bg-blue-600 rounded-lg w-max md:mx-16 md:absolute my-7">
-            Go Back
+          <h1 className="left-0 px-4 py-2 mx-auto text-white bg-blue-600 rounded-lg w-max md:absolute my-7">
+            {t("Go Back")}
           </h1>
         </Link>
         <h2 className="mt-10 text-3xl font-bold text-center text-lightgray">
-          Gifts To Receive{" "}
+          {t("Gifts To Receive")}
         </h2>
         <div className="flex flex-wrap w-full gap-6 my-16 mt-16">
           {data.length > 0 ? (
@@ -95,14 +98,18 @@ const Page2 = () => {
                 key={index}
                 className="mx-auto text-center bg-lightgray size-60 aspect-square"
               >
-                <CardHeader>Request {index + 1}</CardHeader>
+                <CardHeader>
+                  {t("Request")} {index + 1}
+                </CardHeader>
 
                 <CardContent className="flex flex-col gap-2 -mt-2">
-                  <CardTitle>To : {req.recipient.username}</CardTitle>
+                  <CardTitle>
+                    {t("To")} : {req.recipient.username}
+                  </CardTitle>
                   <CardTitle>{req.recipient.email}</CardTitle>
 
                   <CardDescription className=" text-gray">
-                    Amount : ${req.amount}
+                    {t("Amount")} : ${req.amount}
                   </CardDescription>
                   <CardDescription
                     className={(() => {
@@ -116,7 +123,7 @@ const Page2 = () => {
                       return "";
                     })()}
                   >
-                    {req.status}
+                    {t(req.status)}
                   </CardDescription>
                   <CardDescription className=" text-gray">
                     <strong>{formattedDoor}</strong>
@@ -135,11 +142,10 @@ const Page2 = () => {
               <div className="w-full max-w-sm p-6 text-center bg-gray-900 rounded-lg shadow-lg">
                 <FiFrown className="mx-auto mb-4 text-6xl text-yellow-400 animate-bounce" />
                 <h1 className="mb-4 text-3xl font-semibold text-gray-200">
-                  No Request Found
+                  {t("No Request Found")}
                 </h1>
                 <p className="text-lg text-gray-400">
-                  It seems like there are no requests at the moment. Please
-                  check back later.
+                  {t("No Request Message")}
                 </p>
               </div>
             </div>

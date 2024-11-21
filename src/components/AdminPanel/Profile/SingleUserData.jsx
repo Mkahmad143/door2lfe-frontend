@@ -12,16 +12,18 @@ import {
 import { Link } from "react-router-dom";
 import Navbar from "../UI/Navbar";
 import Footer from "../UI/Footer";
+import { useTranslation } from "react-i18next"; // Import translation hook
 
 const SingleUserData = () => {
   const [email, setEmail] = useState(""); // Input email state
   const [userData, setUserData] = useState(null); // User data state
   const [loading, setLoading] = useState(false); // Loading state
   const [error, setError] = useState(null); // Error state
+  const { t } = useTranslation(); // Initialize translation hook
 
   const fetchUserData = async () => {
     if (!email) {
-      setError("Email is required.");
+      setError(t("emailRequired"));
       return;
     }
 
@@ -38,9 +40,7 @@ const SingleUserData = () => {
       );
       setUserData(response.data);
     } catch (err) {
-      setError(
-        "Failed to fetch user data. Please check the email or try again later."
-      );
+      setError(t("errorFetchingUserData"));
       console.error(err);
     } finally {
       setLoading(false);
@@ -58,7 +58,7 @@ const SingleUserData = () => {
         </Link>
         <div className="max-w-lg p-8 mx-auto rounded-lg shadow-lg bg-lightgray">
           <h1 className="mb-6 text-2xl font-bold text-center text-gray-800">
-            Search User by Email
+            {t("searchUserByEmail")}
           </h1>
 
           {/* Email Input */}
@@ -66,7 +66,7 @@ const SingleUserData = () => {
             <div className="relative flex-grow">
               <input
                 type="email"
-                placeholder="Enter email"
+                placeholder={t("emailPlaceholder")}
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 className="w-full p-3 pr-10 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400"
@@ -78,7 +78,7 @@ const SingleUserData = () => {
               className="flex items-center px-4 py-2 text-white bg-blue-500 rounded-lg hover:bg-blue-600"
             >
               <FaSearch className="mr-2" />
-              Search
+              {t("searchUserByEmail")}
             </button>
           </div>
 
@@ -88,7 +88,7 @@ const SingleUserData = () => {
           {/* Loading */}
           {loading && (
             <p className="text-center text-blue-500 animate-bounce">
-              Loading...
+              {t("loading")}
             </p>
           )}
 
@@ -96,30 +96,30 @@ const SingleUserData = () => {
           {userData && (
             <div className="mt-6">
               <h2 className="mb-4 text-lg font-semibold text-gray-800">
-                {userData.username}'s Profile
+                {userData.username} {t("userProfile")}
               </h2>
               <div className="p-4 mb-4 rounded-lg shadow-md ">
                 <p className="flex items-center gap-2 text-gray-600">
                   <FaEnvelope />
-                  <strong>Email:</strong> {userData.email}
+                  <strong>{t("email")}:</strong> {userData.email}
                 </p>
                 <p className="flex items-center gap-2 text-gray-600">
                   <FaPhone />
-                  <strong>Phone:</strong> {userData.phone}
+                  <strong>{t("phone")}:</strong> {userData.phone}
                 </p>
                 <p className="flex items-center gap-2 text-gray-600">
                   <FaQrcode />
-                  <strong> Referral Code:</strong> {userData.referralCode}
+                  <strong>{t("referralCode")}:</strong> {userData.referralCode}
                 </p>
                 <p className="flex items-center gap-2 text-gray-600">
                   <FaCoins />
-                  <strong>Donation Amount:</strong> ${userData.amount}
+                  <strong>{t("donationAmount")}:</strong> ${userData.amount}
                 </p>
               </div>
 
               <div>
                 <h3 className="mb-2 text-lg font-semibold text-gray-800">
-                  Door Status
+                  {t("doorStatus")}
                 </h3>
                 <div className="grid grid-cols-2 gap-4 sm:grid-cols-4">
                   {Object.entries(userData.doorStatus).map(([door, status]) => (
@@ -137,7 +137,7 @@ const SingleUserData = () => {
                         <FaDoorClosed className="text-2xl" />
                       )}
                       <p className="mt-2 font-bold">Door {door}</p>
-                      <p>{status ? "Open" : "Closed"}</p>
+                      <p>{status ? t("open") : t("closed")}</p>
                     </div>
                   ))}
                 </div>

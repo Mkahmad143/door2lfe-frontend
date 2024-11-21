@@ -6,8 +6,10 @@ import { AiFillEye, AiFillEyeInvisible } from "react-icons/ai"; // Import icons
 import Navbar from "../Navbar/Navbar";
 import Footer from "../Footer/Footer";
 import axios from "axios";
+import { useTranslation } from "react-i18next"; // Import translation hook
 
 const Login = () => {
+  const { t } = useTranslation(); // Use translation hook to access language keys
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false); // For toggling password visibility
@@ -24,7 +26,7 @@ const Login = () => {
   const handlelogin = async () => {
     try {
       if (!email || !password) {
-        setError("Please enter your Email address or Password");
+        setError(t("errorMessage")); // Using translation key for error message
       } else {
         // Display a toast promise while the request is in progress
         await toast
@@ -34,9 +36,9 @@ const Login = () => {
               loginData
             ),
             {
-              pending: "Logging in...",
-              success: "Login Successful! 🎉",
-              error: "Failed to login. Check Email or Password",
+              pending: t("loginInProgress"), // Translation for "Logging in..."
+              success: t("loginSuccess"), // Translation for successful login
+              error: t("loginError"), // Translation for login error
             },
             {
               position: "top-right",
@@ -72,18 +74,18 @@ const Login = () => {
       <div className="flex items-center justify-center min-h-screen bg-gray-100">
         <div className="w-full max-w-md p-8 rounded-lg shadow-md bg-lightgray">
           <h2 className="mb-6 text-2xl font-semibold text-center text-gray-800">
-            Login
+            {t("login")} {/* Using translation key for "Login" */}
           </h2>
 
           <form className="space-y-4">
             <div>
               <label className="block mb-1 text-sm font-medium text-gray-600">
-                Email
+                {t("email")} {/* Translation for "Email" */}
               </label>
               <input
                 type="text"
                 onChange={(e) => setEmail(e.target.value)}
-                placeholder="Enter Your Email"
+                placeholder={t("enterEmail")}
                 className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
               />
               {error ? <p className="text-red-600 ">{error}</p> : ""}
@@ -91,12 +93,12 @@ const Login = () => {
 
             <div className="relative">
               <label className="block mb-1 text-sm font-medium text-gray-600">
-                Password
+                {t("password")} {/* Translation for "Password" */}
               </label>
               <input
                 type={showPassword ? "text" : "password"} // Toggle input type
                 onChange={(e) => setPassword(e.target.value)}
-                placeholder="Enter Your Password"
+                placeholder={t("enterPassword")}
                 className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
               />
               <div
@@ -117,7 +119,7 @@ const Login = () => {
               onClick={handlelogin}
               className="w-full py-2 mt-4 font-semibold transition duration-300 rounded-lg bg-green hover:bg-darkGreen"
             >
-              Login
+              {t("loginButton")} {/* Using translation key for button text */}
             </button>
           </form>
         </div>

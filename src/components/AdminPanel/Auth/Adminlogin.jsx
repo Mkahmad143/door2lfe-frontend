@@ -6,11 +6,13 @@ import "react-toastify/dist/ReactToastify.css";
 import Navbar from "../UI/Navbar";
 import Footer from "../UI/Footer";
 import { AiFillEye, AiFillEyeInvisible } from "react-icons/ai"; // Import icons
+import { useTranslation } from "react-i18next"; // Import useTranslation hook
 
 // Sample logo component
 const Logo = () => <div className="text-2xl font-bold">Admin Panel</div>;
 
 const AdminLogin = () => {
+  const { t } = useTranslation(); // Initialize translation hook
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false); // Password visibility state
@@ -38,9 +40,9 @@ const AdminLogin = () => {
           loginData
         ),
         {
-          pending: "Logging in...",
-          success: "Login successful! 🎉",
-          error: "Login failed. Please check your credentials.",
+          pending: t("Logging in..."),
+          success: t("Login successful! 🎉"),
+          error: t("Login failed. Please check your credentials."),
         },
         {
           position: "top-right",
@@ -62,8 +64,8 @@ const AdminLogin = () => {
         }
       })
       .catch((error) => {
-        console.error(error.response?.data?.message || "An error occurred");
-        setError(error.response?.data?.message || "An error occurred");
+        console.error(error.response?.data?.message || t("An error occurred"));
+        setError(error.response?.data?.message || t("An error occurred"));
       });
   };
 
@@ -82,7 +84,7 @@ const AdminLogin = () => {
                 htmlFor="email"
                 className="block font-medium text-gray-700"
               >
-                Email
+                {t("Email")} {/* Translated text */}
               </label>
               <input
                 type="email"
@@ -90,18 +92,17 @@ const AdminLogin = () => {
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
-                placeholder="Enter your email"
+                placeholder={t("Enter your email")}
                 required
               />
             </div>
 
-            {/* Password Field */}
             <div className="relative">
               <label
                 htmlFor="password"
                 className="block font-medium text-gray-700"
               >
-                Password
+                {t("Password")}
               </label>
               <input
                 type={showPassword ? "text" : "password"} // Dynamic input type
@@ -109,10 +110,10 @@ const AdminLogin = () => {
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
                 className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
-                placeholder="Enter your password"
+                placeholder={t("Enter your password")}
                 required
               />
-              {/* Password visibility toggle */}
+
               <div
                 className="absolute right-3 top-[2.1rem] cursor-pointer text-gray-600"
                 onClick={() => setShowPassword(!showPassword)}
@@ -133,7 +134,7 @@ const AdminLogin = () => {
               type="submit"
               className="w-full py-2 font-semibold text-white transition duration-200 bg-blue-500 rounded-lg hover:bg-blue-600"
             >
-              Login
+              {t("Login")} {/* Translated text */}
             </button>
           </form>
         </div>

@@ -9,8 +9,6 @@ import {
 import { useState } from "react";
 
 export function PopUp({ username, email }) {
-  const [amount, setAmount] = useState(0);
-
   return (
     <DialogContent className="sm:max-w-[425px] flex  flex-col items-center gap-8 bg-lightgray text-gray border-gray">
       <DialogHeader className="flex flex-col gap-4">

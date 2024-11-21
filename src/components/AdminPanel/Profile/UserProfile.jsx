@@ -4,10 +4,12 @@ import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import Navbar from "../UI/Navbar";
 import Footer from "../UI/Footer";
+import { useTranslation } from "react-i18next"; // Import the translation hook
 
 const UserProfile = () => {
   const [userData, setUserData] = useState(null);
   const [bankData, setBankData] = useState([]);
+  const { t } = useTranslation(); // Initialize translation hook
 
   const navigate = useNavigate();
   useEffect(() => {
@@ -18,7 +20,7 @@ const UserProfile = () => {
           `https://door2life-backend.vercel.app/api/user/${userId}`
         );
         const bankResponse = await axios.get(
-          " https://door2life-backend.vercel.app/api/bank/main-bank"
+          "https://door2life-backend.vercel.app/api/bank/main-bank"
         );
         if (bankResponse.status === 200) {
           setBankData(bankResponse.data);
@@ -53,11 +55,11 @@ const UserProfile = () => {
       <div className="h-[18vh] relative p-6 bg-gray-50">
         <Link to={"/admin/dashboard"}>
           <h1 className="top-0 left-0 px-4 py-2 mx-auto text-white bg-blue-600 rounded-lg w-max md:absolute md:mx-16 my-7">
-            Go Back
+            {t("goBack")} {/* Translated Go Back text */}
           </h1>
         </Link>
         <h1 className="mb-8 text-3xl font-bold text-center text-white">
-          Admin Panel
+          {t("adminPanel")} {/* Translated Admin Panel text */}
         </h1>
         <DonationAndDoorStatus
           bankAmount={bankData}

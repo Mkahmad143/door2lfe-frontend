@@ -1,20 +1,29 @@
-import React from 'react';
-import { Button } from '../ui/button';
-import { Card, CardContent, CardTitle, CardDescription } from '../ui/card';
+import React from "react";
+import { Button } from "../ui/button";
+import { Card, CardContent, CardTitle, CardDescription } from "../ui/card";
+import { useTranslation } from "react-i18next"; // Import useTranslation
 
 const PrintCertificate = () => {
+  const { t } = useTranslation(); // Initialize translation function
+
   return (
-    <Card className="mx-auto my-8 p-6 max-w-md shadow-lg bg-lightgray flex flex-col items-center">
-      <CardTitle className="text-xl sm:text-2xl font-bold text-center mb-2">Print Certificate</CardTitle>
-      
-      <CardDescription className="text-center text-black font-semibold mb-4">
-        Print your "Opening Doors to Life" Membership Certificate
+    <Card className="flex flex-col items-center max-w-md p-6 mx-auto my-8 shadow-lg bg-lightgray">
+      <CardTitle className="mb-2 text-xl font-bold text-center sm:text-2xl">
+        {t("printCertificateTitle")} {/* Use translation key */}
+      </CardTitle>
+
+      <CardDescription className="mb-4 font-semibold text-center text-black">
+        {t("printCertificateDescription")} {/* Use translation key */}
       </CardDescription>
-      
+
       <CardContent className="text-center">
-        <p className="font-semibold mb-4">Click on the button to print the certificate</p>
+        <p className="mb-4 font-semibold">
+          {t("printCertificateInstructions")} {/* Use translation key */}
+        </p>
         <div className="flex justify-center">
-          <Button className="bg-green hover:bg-darkGreen text-black text-xs sm:text-sm">Print</Button>
+          <Button className="text-xs text-black bg-green hover:bg-darkGreen sm:text-sm">
+            {t("print")} {/* Use translation key */}
+          </Button>
         </div>
       </CardContent>
     </Card>

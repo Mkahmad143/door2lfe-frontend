@@ -5,6 +5,7 @@ import logo from "/logohombre1.png";
 import { CiEdit } from "react-icons/ci";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { useTranslation } from "react-i18next";
 
 const Register = () => {
   const [data, setData] = useState({});
@@ -12,6 +13,7 @@ const Register = () => {
   const [isEditModalOpen, setEditModalOpen] = useState(false);
   const [editData, setEditData] = useState({});
   const [loading, setLoading] = useState(true); // Add loading state
+  const { t } = useTranslation();
 
   useEffect(() => {
     const fetchData = async () => {
@@ -84,7 +86,7 @@ const Register = () => {
       {loading ? (
         <div className="flex items-center justify-center min-h-[27vh] ">
           <div className="text-2xl font-semibold animate-bounce">
-            Loading...
+            {t("loading")}
           </div>
         </div>
       ) : (

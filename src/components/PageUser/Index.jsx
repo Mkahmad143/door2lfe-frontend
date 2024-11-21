@@ -6,24 +6,26 @@ import ReceiveGifts from "./ReceiveGifts";
 import PrintCertificate from "./PrintCertificate";
 import InfoOnDon from "./InfoOnDon";
 import SendGifts from "./SendGifts";
-
 import InfoDoors from "./InfoDoors";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import Footer from "../Footer/Footer";
 import Navbar from "../Navbar/Navbar";
+import { useTranslation } from "react-i18next"; // Import useTranslation hook
 
 const DoorPages = () => {
+  const { t } = useTranslation(); // Get translation function
   const doorPages = [
-    { name: "Video" },
-    { name: "Register" },
-    { name: "Work Group" },
-    { name: "Receive Gifts" },
-    { name: "Send Gifts" },
-    { name: "Print Certificate" },
-    { name: "Information ON Donations" },
-    { name: "Info Doors" },
+    { name: "video" },
+    { name: "register" },
+    { name: "workGroup" },
+    { name: "receiveGifts" },
+    { name: "sendGifts" },
+    { name: "printCertificate" },
+    { name: "informationOnDonations" },
+    { name: "infoDoors" },
   ];
+
   const navigate = useNavigate();
   const [selectedPage, setSelectedPage] = useState(null);
   const [requester, setRequester] = useState("");
@@ -36,6 +38,7 @@ const DoorPages = () => {
       navigate("/Login");
     }
   }, []);
+
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -65,7 +68,7 @@ const DoorPages = () => {
       <Navbar />
       <div className="flex flex-col mt-16 h-max md:flex-row lg:mx-16">
         {/* Sidebar with fixed width and height */}
-        <div className="flex-none w-full p-5 overflow-y-auto bg-gray-200 md:w-60 lg:w-72 h-96 ">
+        <div className="flex-none w-full p-5 overflow-y-auto bg-gray-200 md:w-60 lg:w-72 h-96">
           {doorPages.map((page, index) => (
             <button
               key={index}
@@ -74,22 +77,21 @@ const DoorPages = () => {
               }`}
               onClick={() => handleClick(page)}
             >
-              {page.name}
+              {t(`doorPages.${page.name}`)} {/* Fetch translated name */}
             </button>
           ))}
         </div>
 
         {/* Content area that adjusts based on sidebar width */}
         <div className="flex-1 p-5 h-max">
-          {selectedPage === "Video" && <Video />}
-          {selectedPage === "Register" && <Register />}
-          {selectedPage === "Work Group" && <WorkGroup />}
-          {selectedPage === "Receive Gifts" && <ReceiveGifts />}
-          {selectedPage === "Send Gifts" && <SendGifts requester={requester} />}
-
-          {selectedPage === "Print Certificate" && <PrintCertificate />}
-          {selectedPage === "Information ON Donations" && <InfoOnDon />}
-          {selectedPage === "Info Doors" && <InfoDoors />}
+          {selectedPage === "video" && <Video />}
+          {selectedPage === "register" && <Register />}
+          {selectedPage === "workGroup" && <WorkGroup />}
+          {selectedPage === "receiveGifts" && <ReceiveGifts />}
+          {selectedPage === "sendGifts" && <SendGifts requester={requester} />}
+          {selectedPage === "printCertificate" && <PrintCertificate />}
+          {selectedPage === "informationOnDonations" && <InfoOnDon />}
+          {selectedPage === "infoDoors" && <InfoDoors />}
         </div>
       </div>
       <Footer />

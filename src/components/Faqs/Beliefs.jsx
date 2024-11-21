@@ -1,38 +1,30 @@
 import React from "react";
-import {
-  Accordion,
-  AccordionContent,
-  AccordionItem,
-  AccordionTrigger,
-} from "../../components/ui/accordion";
-import belief from "./belief";
+import { useTranslation } from "react-i18next";
 import Navbar from "../Navbar/Navbar";
 import Footer from "../Footer/Footer";
 
 const Beliefs = () => {
+  const { t } = useTranslation();
+
   return (
     <>
       <Navbar />
       <div className="flex flex-col justify-center w-screen mx-auto mt-20 text-3xl text-white">
-        <h1 className="mt-16 text-6xl text-center">Our Beliefs</h1>
-        {belief.map((comp, i) => (
+        <h1 className="mt-16 text-6xl text-center">{t("beliefs.title")}</h1>
+        {t("beliefs.list", { returnObjects: true }).map((belief, index) => (
           <div
-            key={i}
-            type="single"
-            collapsible
+            key={index}
             className="w-[17rem] sm:w-[35rem] md:w-[45rem] lg:w-[55rem] mx-auto mt-8 lg:mt-16"
           >
             <ul className="gap-2 text-sm md:text-lg">
-              <li className="relative pl-6 mt-6 ">
+              <li className="relative pl-6 mt-6">
                 <span className="absolute left-0">➔</span>
-                {comp.belief}
+                {belief}
               </li>
             </ul>
           </div>
         ))}
-        <h6 className="mt-6 text-xl text-center">
-          Join us to create the World of Yours and Mine.
-        </h6>
+        <h6 className="mt-6 text-xl text-center">{t("beliefs.joinUs")}</h6>
       </div>
       <Footer />
     </>

@@ -11,6 +11,7 @@ import { Label } from "../components/ui/label";
 import { toast, ToastContainer } from "react-toastify";
 import axios from "axios";
 import { Button } from "../components/ui/button";
+import { useTranslation } from "react-i18next"; // Import translation hook
 
 const doorValues = [
   { door: 1, donationAmount: 200, amountReceived: 1600 },
@@ -30,6 +31,7 @@ const doorValues = [
 
 export function PopUp({ username, email, id, doorStatus }) {
   const [amount, setAmount] = useState(0);
+  const { t } = useTranslation(); // Initialize translation hook
 
   const calculateDonationAmount = () => {
     const unlockedDoors = Object.entries(doorStatus)
@@ -81,8 +83,8 @@ export function PopUp({ username, email, id, doorStatus }) {
       <DialogHeader>
         <DialogTitle>{username}</DialogTitle>
         <DialogDescription>{email}</DialogDescription>
-        <Label htmlFor="Amount">Your Amount</Label>
-
+        <Label htmlFor="Amount">{t("yourAmount")}</Label>{" "}
+        {/* Translated label */}
         <Input
           type="number"
           value={amount}
@@ -93,7 +95,8 @@ export function PopUp({ username, email, id, doorStatus }) {
 
       <DialogFooter>
         <div onClick={handleSend}>
-          <Button type="submit">Send Donation Request</Button>
+          <Button type="submit">{t("sendDonationRequest")}</Button>{" "}
+          {/* Translated button text */}
         </div>
       </DialogFooter>
       <ToastContainer stacked />

@@ -3,8 +3,10 @@ import { Button } from "../ui/button";
 import { Card, CardContent, CardTitle, CardDescription } from "../ui/card";
 import { Link } from "react-router-dom";
 import axios from "axios";
+import { useTranslation } from "react-i18next"; // Import useTranslation
 
 const ReceiveGifts = () => {
+  const { t } = useTranslation(); // Initialize translation function
   const [data, setData] = useState(null); // Initialize with null for better conditional rendering
   const [loading, setLoading] = useState(true); // Track loading state
   const [error, setError] = useState(""); // Track errors
@@ -46,7 +48,7 @@ const ReceiveGifts = () => {
   if (loading) {
     return (
       <div className="flex items-center justify-center h-screen text-gray">
-        Loading...
+        {t("loading")} {/* Use translation key for loading */}
       </div>
     );
   }
@@ -62,18 +64,20 @@ const ReceiveGifts = () => {
   return (
     <Card className="max-w-md p-6 mx-auto my-8 shadow-lg bg-lightgray">
       <CardTitle className="mb-2 text-xl font-bold text-center sm:text-2xl">
-        VIEW MY GIFTS
+        {t("viewGiftsTitle")} {/* Use translation key */}
       </CardTitle>
 
       <CardDescription className="mb-4 font-semibold text-center text-gray">
-        You should complete each one of the Doors in order from 1 to 14.
+        {t("viewGiftsDescription")} {/* Use translation key */}
       </CardDescription>
 
       <CardContent className="text-center">
-        <p className="mb-4 font-semibold">Current Door:</p>
+        <p className="mb-4 font-semibold">{t("currentDoorLabel")}</p>
         <Link to={`/userpage/receive-gift`}>
           <Button className="text-xs text-black bg-green hover:bg-darkGreen sm:text-sm">
-            {currentDoor ? `DOOR ${currentDoor}` : "ALL DOORS COMPLETED"}
+            {currentDoor
+              ? `${t("door")} ${currentDoor}`
+              : t("allDoorsCompleted")}
           </Button>
         </Link>
       </CardContent>
