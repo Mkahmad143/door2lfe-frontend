@@ -5,10 +5,14 @@ import { Link } from "react-router-dom";
 import {
   Card,
   CardContent,
-  CardDescription,
+  CardFooter,
   CardHeader,
   CardTitle,
 } from "../../ui/card";
+import { toast, ToastContainer } from "react-toastify";
+import { MdDone } from "react-icons/md";
+import Footer from "../../Footer/Footer";
+import Navbar from "../../Navbar/Navbar";
 
 const ReceviceGiftsFromOwner = () => {
   const [pendingRequests, setPendingRequests] = useState([]);
@@ -46,82 +50,124 @@ const ReceviceGiftsFromOwner = () => {
     ? ` ${currentDoor - 1}`
     : "All doors unlocked";
 
-  return (
-    <main className="min-h-screen relative w-screen max-w-[80vw] mx-auto pt-[5rem] md:pt-[8rem]">
-      <Link to={"/userpage"}>
-        <h1 className="left-0 px-4 py-2 mx-auto text-white bg-blue-600 rounded-lg md:mx-16 w-max md:absolute md:m-0 my-7">
-          Go Back
-        </h1>
-      </Link>
-      <h2 className="mb-8 text-4xl font-bold text-center text-lightgray">
-        Manage Your Gifts and Payments
-      </h2>
+  const handleSend = async (id) => {
+    try {
+      console.log(id);
+      const editData = {
+        requesterId: id,
+        recipientId: userId,
+      };
+      const response = await axios.post(
+        `https://door2life-backend.vercel.app/api/messages/pending-requests/mark-approval`,
+        editData
+      );
+      console.log(response);
 
-      <section className="my-16 ">
-        <h3 className="mb-4 text-2xl font-bold text-lightgray">
-          Pending Requests
-        </h3>
-        <div className="flex flex-wrap gap-6 my-16">
-          {pendingRequests.length > 0 ? (
-            pendingRequests.map((req, index) => (
-              <Card
-                key={req._id}
-                className="mx-auto text-center bg-lightgray w-80"
-              >
-                <CardHeader>
-                  <CardTitle className="text-xl font-semibold">
-                    Request {index + 1}
-                  </CardTitle>
-                </CardHeader>
-                <CardContent className="flex flex-colgap-2">
-                  <table className="w-full table-auto">
-                    <tbody>
-                      <tr>
-                        <td className="font-semibold">From:</td>
-                        <td>{req.requester?.username}</td>
-                      </tr>
-                      <tr>
-                        <td className="font-semibold">Email:</td>
-                        <td>{req.requester?.email}</td>
-                      </tr>
-                      <tr>
-                        <td className="font-semibold">Phone#:</td>
-                        <td>{req.requester?.phone}</td>
-                      </tr>
-                      <tr>
-                        <td className="font-semibold">Amount:</td>
-                        <td>
-                          <strong>${req.amount}</strong>
-                        </td>
-                      </tr>
-                      <tr>
-                        <td className="font-semibold">Door:</td>
-                        <td>
-                          <strong>{formattedDoor}</strong>
-                        </td>
-                      </tr>
-                    </tbody>
-                  </table>
-                </CardContent>
-              </Card>
-            ))
-          ) : (
-            <div className="flex items-center mx-auto text-white bg-gray-800 min-w-screen">
-              <div className="w-full max-w-sm p-6 text-center bg-gray-900 rounded-lg shadow-lg">
-                <FiFrown className="mx-auto mb-4 text-6xl text-yellow-400 animate-bounce" />
-                <h1 className="mb-4 text-3xl font-semibold text-gray-200">
-                  No Request Found
-                </h1>
-                <p className="text-lg text-gray-400">
-                  It seems like there are no requests at the moment. Please
-                  check back later.
-                </p>
+      toast.success("Send and Waiting For Approval", {
+        position: "top-right",
+        autoClose: 1200,
+        hideProgressBar: true,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        theme: "light",
+      });
+    } catch (error) {
+      toast.error("Already Waiting for Approval", {
+        position: "top-right",
+        autoClose: 1200,
+        hideProgressBar: true,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        theme: "light",
+      });
+    }
+  };
+  return (
+    <>
+      <Navbar />
+      <main className="min-h-screen relative w-screen max-w-[80vw] mx-auto pt-[5rem] md:pt-[8rem]">
+        <Link to={"/userpage"}>
+          <h1 className="left-0 px-4 py-2 mx-auto text-white bg-blue-600 rounded-lg md:mx-16 w-max md:absolute md:m-0 my-7">
+            Go Back
+          </h1>
+        </Link>
+        <h2 className="mb-8 text-4xl font-bold text-center text-lightgray">
+          Manage Your Gifts and Payments
+        </h2>
+
+        <section className="my-16 ">
+          <div className="flex flex-wrap gap-6 my-16">
+            {pendingRequests.length > 0 ? (
+              pendingRequests.map((req, index) => (
+                <Card
+                  key={req._id}
+                  className="mx-auto text-center bg-lightgray w-80"
+                >
+                  <CardHeader>
+                    <CardTitle className="text-xl font-semibold">
+                      Request {index + 1}
+                    </CardTitle>
+                  </CardHeader>
+                  <CardContent className="flex flex-colgap-2">
+                    <table className="w-full table-auto">
+                      <tbody>
+                        <tr>
+                          <td className="font-semibold">From:</td>
+                          <td>{req.requester?.username}</td>
+                        </tr>
+                        <tr>
+                          <td className="font-semibold">Email:</td>
+                          <td>{req.requester?.email}</td>
+                        </tr>
+                        <tr>
+                          <td className="font-semibold">Phone#:</td>
+                          <td>{req.requester?.phone}</td>
+                        </tr>
+                        <tr>
+                          <td className="font-semibold">Amount:</td>
+                          <td>
+                            <strong>${req.amount}</strong>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td className="font-semibold">Door:</td>
+                          <td>
+                            <strong>{formattedDoor}</strong>
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </CardContent>
+                  <CardFooter className="flex justify-center gap-4 -mt-4">
+                    <MdDone
+                      onClick={() => handleSend(req.requester._id)}
+                      className="p-1 text-4xl text-black transition-all rounded-lg cursor-pointer hover:scale-75 hover:bg-green "
+                    />
+                  </CardFooter>
+                </Card>
+              ))
+            ) : (
+              <div className="flex items-center mx-auto text-white bg-gray-800 min-w-screen">
+                <div className="w-full max-w-sm p-6 text-center bg-gray-900 rounded-lg shadow-lg">
+                  <FiFrown className="mx-auto mb-4 text-6xl text-yellow-400 animate-bounce" />
+                  <h1 className="mb-4 text-3xl font-semibold text-gray-200">
+                    No Request Found
+                  </h1>
+                  <p className="text-lg text-gray-400">
+                    It seems like there are no requests at the moment. Please
+                    check back later.
+                  </p>
+                </div>
               </div>
-            </div>
-          )}
-        </div>
-      </section>
-    </main>
+            )}
+          </div>
+        </section>
+        <ToastContainer stacked />
+      </main>
+      <Footer />
+    </>
   );
 };
 

@@ -13,20 +13,19 @@ import axios from "axios";
 import { Button } from "../components/ui/button";
 
 const doorValues = [
-  { door: 1, donationAmount: 50, amountReceived: 400 },
-  { door: 2, donationAmount: 200, amountReceived: 1600 },
-  { door: 3, donationAmount: 600, amountReceived: 4800 },
-  { door: 4, donationAmount: 1800, amountReceived: 14400 },
-  { door: 5, donationAmount: 3000, amountReceived: 24000 },
-  { door: 6, donationAmount: 4000, amountReceived: 32000 },
-  { door: 7, donationAmount: 12000, amountReceived: 96000 },
-  { door: 8, donationAmount: 50, amountReceived: 400 },
-  { door: 9, donationAmount: 200, amountReceived: 1600 },
-  { door: 10, donationAmount: 600, amountReceived: 4800 },
-  { door: 11, donationAmount: 1800, amountReceived: 14400 },
-  { door: 12, donationAmount: 3000, amountReceived: 24000 },
-  { door: 13, donationAmount: 4000, amountReceived: 32000 },
-  { door: 14, donationAmount: 12000, amountReceived: 96000 },
+  { door: 1, donationAmount: 200, amountReceived: 1600 },
+  { door: 2, donationAmount: 600, amountReceived: 4800 },
+  { door: 3, donationAmount: 1800, amountReceived: 14400 },
+  { door: 4, donationAmount: 3000, amountReceived: 24000 },
+  { door: 5, donationAmount: 4000, amountReceived: 32000 },
+  { door: 6, donationAmount: 12000, amountReceived: 96000 },
+  { door: 7, donationAmount: 50, amountReceived: 400 },
+  { door: 8, donationAmount: 200, amountReceived: 1600 },
+  { door: 9, donationAmount: 600, amountReceived: 4800 },
+  { door: 10, donationAmount: 1800, amountReceived: 14400 },
+  { door: 11, donationAmount: 3000, amountReceived: 24000 },
+  { door: 12, donationAmount: 4000, amountReceived: 32000 },
+  { door: 13, donationAmount: 12000, amountReceived: 96000 },
 ];
 
 export function PopUp({ username, email, id, doorStatus }) {
@@ -71,11 +70,20 @@ export function PopUp({ username, email, id, doorStatus }) {
       });
     } catch (error) {
       console.log(error);
+      toast.error("Donation Already Sent ", {
+        position: "top-center",
+        autoClose: 1200,
+        hideProgressBar: true,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        theme: "light",
+      });
     }
   };
 
   return (
-    <DialogContent className="sm:max-w-[425px] bg-lightgray text-gray border-gray">
+    <DialogContent className="sm:max-w-[425px]  bg-lightgray text-gray border-gray">
       <DialogHeader>
         <DialogTitle>{username}</DialogTitle>
         <DialogDescription>{email}</DialogDescription>
@@ -94,7 +102,7 @@ export function PopUp({ username, email, id, doorStatus }) {
           <Button type="submit">Send Donation Request</Button>
         </div>
       </DialogFooter>
-      <ToastContainer />
+      <ToastContainer stacked />
     </DialogContent>
   );
 }

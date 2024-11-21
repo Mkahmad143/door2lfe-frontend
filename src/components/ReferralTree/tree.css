@@ -29,7 +29,7 @@
   padding: 8px;
   border: 2px solid white; /* Darker gray border */
   border-radius: 10px;
-  background-color: #59f2d9; /* Green for buttons */
+  background-color: #59f2d9;
   width: 145px;
   color: #000;
   margin: 0 auto;
@@ -95,6 +95,19 @@
   .email {
     color: #fff;
   }
+}
+.empty-box {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(255, 255, 255, 0.1);
+  border: 1px dashed white;
+  border-radius: 8px;
+  padding: 8px;
+  width: 145px;
+  margin: 10px;
+  color: white;
+  font-size: 1rem;
 }
 
 /* Responsive Design for Smaller Screens */

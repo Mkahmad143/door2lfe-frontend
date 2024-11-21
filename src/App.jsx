@@ -24,7 +24,6 @@ const App = () => {
   return (
     <div>
       <Router>
-        <Navbar />
         <Routes>
           <Route element={<AdminLogin />} path="/admin/login" />
           <Route element={<AdminPanel />} path="/admin/dashboard" />
@@ -63,7 +62,6 @@ const App = () => {
 
           <Route element={<Contact />} path="/contact" />
         </Routes>
-        <Footer />
       </Router>
     </div>
   );

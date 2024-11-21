@@ -6,11 +6,13 @@ import {
   AccordionTrigger,
 } from "../../components/ui/accordion";
 import faqs from "./faqData";
+import Navbar from "../Navbar/Navbar";
+import Footer from "../Footer/Footer";
 
 const Faqs = () => {
   return (
     <>
-      <div></div>
+      <Navbar />
       <div className="flex flex-col justify-center w-screen mx-auto mt-20 text-3xl text-white">
         <h1 className="mt-16 text-6xl text-center">FAQ'S </h1>
         {faqs.map((comp, i) => (
@@ -31,6 +33,7 @@ const Faqs = () => {
           </Accordion>
         ))}
       </div>
+      <Footer />
     </>
   );
 };

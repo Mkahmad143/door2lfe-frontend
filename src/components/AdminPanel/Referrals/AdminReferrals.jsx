@@ -4,6 +4,8 @@ import axios from "axios";
 import "./tree.css";
 import { PopUp } from "./PopUp";
 import { Dialog, DialogTrigger } from "../../ui/dialog";
+import Footer from "../UI/Footer";
+import Navbar from "../UI/Navbar";
 
 const AdminReferrals = () => {
   const [referralTree, setReferralTree] = useState(null); // Full tree
@@ -67,29 +69,47 @@ const AdminReferrals = () => {
   };
 
   return (
-    <div className="relative min-h-screen text-white tree-container">
-      <Link to={"/admin/dashboard"}>
-        <h1 className="top-0 left-0 px-4 py-2 mx-auto bg-blue-600 rounded-lg md:absolute w-max md:mx-16 my-7">
-          Go Back
-        </h1>
-      </Link>
-      <div className="flex flex-col items-center justify-center w-full mx-16">
-        <h2 className="mx-auto text-4xl text-white">Referral Tree</h2>
-        {currentNode !== referralTree && (
-          <button
-            onClick={() => setCurrentNode(referralTree)} // Reset to the full tree
-            className="px-4 py-2 mt-4 bg-blue-500 rounded-lg"
-          >
-            Show Full Tree
-          </button>
+    <>
+      <Navbar />
+      <div className="relative min-h-screen text-white tree-container">
+        <div className="left-0 top-[12rem] grid grid-cols-2 mx-16 rounded-lg w-[14rem] h-[8rem] place-items-center text-gray bg-lightgray md:absolute xl:left-[60rem] xl:top-[4rem]  my-7">
+          <div className="flex flex-col gap-[.50rem] px-2 test-gray">
+            <p className="bg-[#59f2d9] w-4 h-4 rounded-full"></p>
+            <p className="bg-[#17bea2] w-4 h-4 rounded-full"></p>
+            <p className="bg-[#107766] w-4 h-4 rounded-full"></p>
+            <p className="bg-[#154c42] w-4 h-4 rounded-full"></p>
+          </div>
+          <div className="px-2 -ml-16 test-gray">
+            <h1>Founder</h1>
+            <h1>1st Gen</h1>
+            <h1>2nd Gen</h1>
+            <h1>3rd Gen</h1>
+          </div>
+        </div>
+        <Link to={"/admin/dashboard"}>
+          <h1 className="top-0 left-0 px-4 py-2 mx-auto bg-blue-600 rounded-lg md:absolute w-max md:mx-16 my-7">
+            Go Back
+          </h1>
+        </Link>
+        <div className="flex flex-col items-center justify-center w-full mx-16">
+          <h2 className="mx-auto text-4xl text-white">Referral Tree</h2>
+          {currentNode !== referralTree && (
+            <button
+              onClick={() => setCurrentNode(referralTree)} // Reset to the full tree
+              className="px-4 py-2 mt-4 bg-blue-500 rounded-lg"
+            >
+              Show Full Tree
+            </button>
+          )}
+        </div>
+        {currentNode ? (
+          <div className="root-node">{renderTree(currentNode)}</div>
+        ) : (
+          <p className="text-white animate-spin transform-origin text-7xl">.</p>
         )}
       </div>
-      {currentNode ? (
-        <div className="root-node">{renderTree(currentNode)}</div>
-      ) : (
-        <p className="text-white animate-spin transform-origin text-7xl">.</p>
-      )}
-    </div>
+      <Footer />
+    </>
   );
 };
 
