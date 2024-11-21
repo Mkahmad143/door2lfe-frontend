@@ -89,46 +89,56 @@ const SignUp = () => {
   }, [name, email, password, phone]);
 
   const handleRegister = async () => {
-    try {
-      const registerData = {
-        username: name,
-        password: password,
-        email: email,
-        phone: phone,
-        amount: paypalAmount,
-        referralCode: referralCode || null,
-      };
-      const response = await axios.post(
-        "https://door2life-backend.vercel.app/api/auth/register",
-        registerData
-      );
-      toast.success("Successfuly created an Account", {
-        position: "top-right",
-        autoClose: 1200,
-        hideProgressBar: true,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        theme: "light",
-      });
+    const registerData = {
+      username: name,
+      password: password,
+      email: email,
+      phone: phone,
+      amount: paypalAmount,
+      referralCode: referralCode || null,
+    };
 
-      setTimeout(() => {
-        navigate("/login");
-      }, 2200);
-    } catch (error) {
-      setError(error.response.data.Error);
-      toast.error(error.response.data.Error, {
-        position: "top-right",
-        autoClose: 1200,
-        hideProgressBar: true,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        theme: "light",
+    await toast
+      .promise(
+        axios.post(
+          "https://door2life-backend.vercel.app/api/auth/register",
+          registerData
+        ),
+        {
+          pending: "Registering your account...",
+          success: "Successfully created an account!",
+          error: {
+            render({ data }) {
+              return (
+                data?.response?.data?.Error || "Failed to create an account."
+              );
+            },
+          },
+        },
+        {
+          position: "top-right",
+          autoClose: 1200,
+          hideProgressBar: true,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          theme: "light",
+        }
+      )
+      .then(() => {
+        // On success, navigate to login after a delay
+        setTimeout(() => {
+          navigate("/login");
+        }, 2200);
+      })
+      .catch((error) => {
+        // Handle additional actions on error if needed
+        setError(
+          error?.response?.data?.Error || "An unexpected error occurred."
+        );
       });
-      error;
-    }
   };
+
   const togglePasswordVisibility = () => {
     setShowPassword(!showPassword);
   };

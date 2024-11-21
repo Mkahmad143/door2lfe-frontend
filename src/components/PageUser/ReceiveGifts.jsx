@@ -73,7 +73,7 @@ const ReceiveGifts = () => {
         <p className="mb-4 font-semibold">Current Door:</p>
         <Link to={`/userpage/receive-gift`}>
           <Button className="text-xs text-black bg-green hover:bg-darkGreen sm:text-sm">
-            {currentDoor ? `DOOR ${currentDoor - 1}` : "ALL DOORS COMPLETED"}
+            {currentDoor ? `DOOR ${currentDoor}` : "ALL DOORS COMPLETED"}
           </Button>
         </Link>
       </CardContent>

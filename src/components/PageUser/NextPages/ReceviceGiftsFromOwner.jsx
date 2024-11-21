@@ -51,19 +51,22 @@ const ReceviceGiftsFromOwner = () => {
     : "All doors unlocked";
 
   const handleSend = async (id) => {
-    try {
-      console.log(id);
-      const editData = {
-        requesterId: id,
-        recipientId: userId,
-      };
-      const response = await axios.post(
+    const editData = {
+      requesterId: id,
+      recipientId: userId,
+    };
+
+    await toast.promise(
+      axios.post(
         `https://door2life-backend.vercel.app/api/messages/pending-requests/mark-approval`,
         editData
-      );
-      console.log(response);
-
-      toast.success("Send and Waiting For Approval", {
+      ),
+      {
+        pending: "Sending request and waiting for approval...",
+        success: "Sent successfully and waiting for approval!",
+        error: "Already waiting for approval or request failed.",
+      },
+      {
         position: "top-right",
         autoClose: 1200,
         hideProgressBar: true,
@@ -71,19 +74,10 @@ const ReceviceGiftsFromOwner = () => {
         pauseOnHover: true,
         draggable: true,
         theme: "light",
-      });
-    } catch (error) {
-      toast.error("Already Waiting for Approval", {
-        position: "top-right",
-        autoClose: 1200,
-        hideProgressBar: true,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        theme: "light",
-      });
-    }
+      }
+    );
   };
+
   return (
     <>
       <Navbar />

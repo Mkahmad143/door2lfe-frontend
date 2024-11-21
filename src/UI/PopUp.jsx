@@ -53,13 +53,18 @@ export function PopUp({ username, email, id, doorStatus }) {
       recipientId: id,
       amount,
     };
-    try {
-      await axios.post(
+
+    await toast.promise(
+      axios.post(
         "https://door2life-backend.vercel.app/api/messages/payment-requests",
         data
-      );
-
-      toast.success("Donation Sent Successfully", {
+      ),
+      {
+        pending: "Sending donation request...",
+        success: "Donation sent successfully! 🎉",
+        error: "Donation Already Sent!",
+      },
+      {
         position: "top-center",
         autoClose: 1200,
         hideProgressBar: true,
@@ -67,19 +72,8 @@ export function PopUp({ username, email, id, doorStatus }) {
         pauseOnHover: true,
         draggable: true,
         theme: "light",
-      });
-    } catch (error) {
-      console.log(error);
-      toast.error("Donation Already Sent ", {
-        position: "top-center",
-        autoClose: 1200,
-        hideProgressBar: true,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        theme: "light",
-      });
-    }
+      }
+    );
   };
 
   return (

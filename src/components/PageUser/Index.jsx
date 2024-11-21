@@ -63,7 +63,7 @@ const DoorPages = () => {
   return (
     <>
       <Navbar />
-      <div className="flex flex-col mt-16 h-max md:flex-row">
+      <div className="flex flex-col mt-16 h-max md:flex-row lg:mx-16">
         {/* Sidebar with fixed width and height */}
         <div className="flex-none w-full p-5 overflow-y-auto bg-gray-200 md:w-60 lg:w-72 h-96 ">
           {doorPages.map((page, index) => (

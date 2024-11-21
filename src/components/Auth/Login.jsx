@@ -1,14 +1,16 @@
-import axios from "axios";
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { AiFillEye, AiFillEyeInvisible } from "react-icons/ai"; // Import icons
 import Navbar from "../Navbar/Navbar";
 import Footer from "../Footer/Footer";
+import axios from "axios";
 
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [showPassword, setShowPassword] = useState(false); // For toggling password visibility
   const [error, setError] = useState("");
   const [token, setToken] = useState("");
 
@@ -16,53 +18,54 @@ const Login = () => {
     email: email,
     password: password,
   };
+
   const navigate = useNavigate();
 
   const handlelogin = async () => {
     try {
       if (!email || !password) {
-        setError("Please Email address or Password");
+        setError("Please enter your Email address or Password");
       } else {
-        const response = await axios.post(
-          "https://door2life-backend.vercel.app/api/auth/login",
-          loginData
-        );
-        console.log(response);
-        const userId = response.data.user._id;
-        sessionStorage.setItem("UserId", userId);
-        sessionStorage.setItem("username", response.data.user.username);
+        // Display a toast promise while the request is in progress
+        await toast
+          .promise(
+            axios.post(
+              "https://door2life-backend.vercel.app/api/auth/login",
+              loginData
+            ),
+            {
+              pending: "Logging in...",
+              success: "Login Successful! 🎉",
+              error: "Failed to login. Check Email or Password",
+            },
+            {
+              position: "top-right",
+              autoClose: 1200,
+              hideProgressBar: true,
+              closeOnClick: true,
+              pauseOnHover: true,
+              draggable: true,
+              theme: "light",
+            }
+          )
+          .then((response) => {
+            const userId = response.data.user._id;
+            sessionStorage.setItem("UserId", userId);
+            sessionStorage.setItem("username", response.data.user.username);
+            sessionStorage.setItem("token", response.data.token);
+            setToken(response.data.token);
 
-        const token = sessionStorage.setItem("token", response.data.token);
-        setToken(token);
-        if (response.status === 200) {
-          toast.success("Login Successful", {
-            position: "top-right",
-            autoClose: 1200,
-            hideProgressBar: true,
-            closeOnClick: true,
-            pauseOnHover: true,
-            draggable: true,
-            theme: "light",
+            setTimeout(() => {
+              navigate("/userpage");
+            }, 1500);
           });
-          setTimeout(() => {
-            navigate("/userpage");
-          }, 1500);
-        }
       }
     } catch (error) {
-      console.log(error.response.data.error);
-      setError(error.response.data.error);
-      toast.error("Check Your Email & Password", {
-        position: "top-right",
-        autoClose: 1200,
-        hideProgressBar: true,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        theme: "light",
-      });
+      console.error(error.response?.data?.error || "An error occurred");
+      setError(error.response?.data?.error || "An error occurred");
     }
   };
+
   return (
     <>
       <Navbar />
@@ -86,17 +89,27 @@ const Login = () => {
               {error ? <p className="text-red-600 ">{error}</p> : ""}
             </div>
 
-            <div>
+            <div className="relative">
               <label className="block mb-1 text-sm font-medium text-gray-600">
                 Password
               </label>
               <input
-                type="password"
+                type={showPassword ? "text" : "password"} // Toggle input type
                 onChange={(e) => setPassword(e.target.value)}
                 placeholder="Enter Your Password"
                 className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
               />
-              {error ? <p className="text-red-600 ">{error}</p> : ""}
+              <div
+                className="absolute text-gray-600 cursor-pointer right-3 top-[2.1rem]"
+                onClick={() => setShowPassword(!showPassword)}
+              >
+                {showPassword ? (
+                  <AiFillEyeInvisible size={24} />
+                ) : (
+                  <AiFillEye size={24} />
+                )}
+              </div>
+              {error ? <p className="text-red-600">{error}</p> : ""}
             </div>
 
             <button

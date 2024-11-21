@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { toast, ToastContainer } from "react-toastify";
 
 const Navbar = () => {
-  const { navigate } = useNavigate();
+  const navigate = useNavigate();
 
   const handleLogin = () => {
     navigate("/admin/login");
@@ -16,10 +16,10 @@ const Navbar = () => {
       hideProgressBar: true,
       theme: "colored",
     });
-    localStorage.removeItem("adminLogin");
     setTimeout(() => {
+      localStorage.removeItem("adminLogin");
       navigate("/admin/login");
-    }, 1800);
+    }, 1500);
   };
   return (
     <nav className="sticky top-0 z-10 flex items-center justify-between w-full p-4 text-white bg-white shadow-md lg:px-16 bg-opacity-20 backdrop-blur-md">

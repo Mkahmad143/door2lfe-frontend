@@ -5,12 +5,15 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import Navbar from "../UI/Navbar";
 import Footer from "../UI/Footer";
+import { AiFillEye, AiFillEyeInvisible } from "react-icons/ai"; // Import icons
+
 // Sample logo component
 const Logo = () => <div className="text-2xl font-bold">Admin Panel</div>;
 
 const AdminLogin = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [showPassword, setShowPassword] = useState(false); // Password visibility state
   const [error, setError] = useState("");
   const navigate = useNavigate();
 
@@ -24,16 +27,22 @@ const AdminLogin = () => {
       navigate("/admin/dashboard");
     }
   }, []);
+
   const handleLogin = async (e) => {
     e.preventDefault();
-    try {
-      const response = await axios.post(
-        "https://door2life-backend.vercel.app/api/auth/admin/login",
-        loginData
-      );
-      if (response.status === 200) {
-        localStorage.setItem("adminLogin", response.data.token);
-        toast.success("Login Successfuly! ", {
+
+    await toast
+      .promise(
+        axios.post(
+          "https://door2life-backend.vercel.app/api/auth/admin/login",
+          loginData
+        ),
+        {
+          pending: "Logging in...",
+          success: "Login successful! 🎉",
+          error: "Login failed. Please check your credentials.",
+        },
+        {
           position: "top-right",
           autoClose: 1200,
           hideProgressBar: true,
@@ -41,26 +50,33 @@ const AdminLogin = () => {
           pauseOnHover: true,
           draggable: true,
           theme: "light",
-        });
-        setTimeout(() => {
-          navigate("/admin/dashboard");
-        }, 1600);
-      }
-    } catch (error) {
-      console.log(error);
-    }
+        }
+      )
+      .then((response) => {
+        if (response.status === 200) {
+          localStorage.setItem("adminLogin", response.data.token);
+
+          setTimeout(() => {
+            navigate("/admin/dashboard");
+          }, 1600);
+        }
+      })
+      .catch((error) => {
+        console.error(error.response?.data?.message || "An error occurred");
+        setError(error.response?.data?.message || "An error occurred");
+      });
   };
 
   return (
     <>
       <Navbar />
       <div className="flex items-center justify-center min-h-screen">
-        <div className="w-full max-w-md p-8 rounded-lg shadow-lg bg-lightgray ">
+        <div className="w-full max-w-md p-8 rounded-lg shadow-lg bg-lightgray">
           <div className="flex justify-center mb-6">
             <Logo />
           </div>
 
-          <form onSubmit={handleLogin} className="space-y-4 ">
+          <form onSubmit={handleLogin} className="space-y-4">
             <div>
               <label
                 htmlFor="email"
@@ -80,7 +96,7 @@ const AdminLogin = () => {
             </div>
 
             {/* Password Field */}
-            <div>
+            <div className="relative">
               <label
                 htmlFor="password"
                 className="block font-medium text-gray-700"
@@ -88,7 +104,7 @@ const AdminLogin = () => {
                 Password
               </label>
               <input
-                type="password"
+                type={showPassword ? "text" : "password"} // Dynamic input type
                 id="password"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
@@ -96,6 +112,17 @@ const AdminLogin = () => {
                 placeholder="Enter your password"
                 required
               />
+              {/* Password visibility toggle */}
+              <div
+                className="absolute right-3 top-[2.1rem] cursor-pointer text-gray-600"
+                onClick={() => setShowPassword(!showPassword)}
+              >
+                {showPassword ? (
+                  <AiFillEyeInvisible size={24} />
+                ) : (
+                  <AiFillEye size={24} />
+                )}
+              </div>
             </div>
 
             {/* Error Message */}

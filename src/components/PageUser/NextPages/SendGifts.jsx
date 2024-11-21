@@ -49,17 +49,22 @@ const Page2 = () => {
     ? `Door ${currentDoor}`
     : "All doors unlocked";
   const handleSend = async (id) => {
-    try {
-      const editData = {
-        requesterId: userId,
-        recipientId: id,
-      };
-      console.log(editData);
-      const response = await axios.patch(
+    const editData = {
+      requesterId: userId,
+      recipientId: id,
+    };
+
+    await toast.promise(
+      axios.patch(
         `https://door2life-backend.vercel.app/api/messages/payment-requests/${id}`,
         editData
-      );
-      toast.success("Successfully Marked as Paid", {
+      ),
+      {
+        pending: "Marking as paid...",
+        success: "Successfully marked as paid!",
+        error: " Waiting For Payment or Already paid",
+      },
+      {
         position: "top-right",
         autoClose: 1200,
         hideProgressBar: true,
@@ -67,18 +72,8 @@ const Page2 = () => {
         pauseOnHover: true,
         draggable: true,
         theme: "light",
-      });
-    } catch (error) {
-      toast.error("Already Marked as Paid", {
-        position: "top-right",
-        autoClose: 1200,
-        hideProgressBar: true,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        theme: "light",
-      });
-    }
+      }
+    );
   };
 
   return (

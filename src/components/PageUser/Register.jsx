@@ -11,6 +11,7 @@ const Register = () => {
   const [referrals, setReferrals] = useState([]);
   const [isEditModalOpen, setEditModalOpen] = useState(false);
   const [editData, setEditData] = useState({});
+  const [loading, setLoading] = useState(true); // Add loading state
 
   useEffect(() => {
     const fetchData = async () => {
@@ -32,6 +33,8 @@ const Register = () => {
         }
       } catch (error) {
         console.error("Error fetching data:", error);
+      } finally {
+        setLoading(false); // Stop loading after fetch completes
       }
     };
 
@@ -50,91 +53,93 @@ const Register = () => {
 
   const handleEditSubmit = async (e) => {
     e.preventDefault();
-    try {
-      console.log(editData);
-      const { password, ...updateData } = editData; // Separate password from other data
-      const res = await axios.patch(
+    const { password, ...updateData } = editData;
+
+    // Use toast.promise for better feedback
+    await toast.promise(
+      axios.patch(
         `https://door2life-backend.vercel.app/api/user/${editData.userId}`,
         updateData
-      );
+      ),
+      {
+        pending: "Saving changes...",
+        success: "User updated successfully!",
+        error: "Failed to update user.",
+      }
+    );
 
-      toast.success("User Updated Successfuly", {
-        position: "top-right",
-        autoClose: 1200,
-        hideProgressBar: true,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        theme: "light",
-      });
-      setReferrals(
-        referrals.map((referral) =>
-          referral._id === editData._id
-            ? { ...referral, ...updateData }
-            : referral
-        )
-      );
-      setEditModalOpen(false);
-    } catch (error) {
-      console.error("Error updating user:", error);
-      alert("Failed to update user");
-    }
+    // Update referrals list
+    setReferrals(
+      referrals.map((referral) =>
+        referral._id === editData._id
+          ? { ...referral, ...updateData }
+          : referral
+      )
+    );
+    setEditModalOpen(false);
   };
 
   return (
     <main className="w-full p-4 rounded-xl bg-slate-200 sm:p-6 md:p-8">
-      <div className="grid grid-cols-1 gap-4 rounded-lg sm:grid-cols-2">
-        {/* Main User Card */}
-        <Card className="flex flex-col items-center justify-center w-full mx-auto text-black bg-white rounded-lg sm:col-span-2 border-gray">
-          <CardContent className="flex flex-col items-center gap-2 my-2">
-            <img
-              src={logo}
-              alt={`${data.username || "User"} profile`}
-              className="w-12 h-12"
-            />
-            <CardTitle>{data.username || "User"}</CardTitle>
-            <CardDescription className="font-semibold text-black">
-              {data.email || "No email provided"}
-            </CardDescription>
-          </CardContent>
-        </Card>
+      {loading ? (
+        <div className="flex items-center justify-center min-h-[27vh] ">
+          <div className="text-2xl font-semibold animate-bounce">
+            Loading...
+          </div>
+        </div>
+      ) : (
+        <div className="grid grid-cols-1 gap-4 rounded-lg sm:grid-cols-2">
+          <Card className="flex flex-col items-center justify-center w-full mx-auto text-black bg-white rounded-lg sm:col-span-2 border-gray">
+            <CardContent className="flex flex-col items-center gap-2 my-2">
+              <img
+                src={logo}
+                alt={`${data.username || "User"} profile`}
+                className="w-12 h-12"
+              />
+              <CardTitle>{data.username || "User"}</CardTitle>
+              <CardDescription className="font-semibold text-black">
+                {data.email || "No email provided"}
+              </CardDescription>
+            </CardContent>
+          </Card>
 
-        {referrals.length > 0 ? (
-          referrals.map((referral) => (
-            <Card
-              key={referral._id}
-              className="relative flex items-center justify-center text-black rounded-lg bg-slate-200 border-gray"
-            >
-              <div className="absolute top-0 right-0 flex">
-                <CiEdit
-                  onClick={() => handleEdit(referral)}
-                  className="text-3xl text-blue-600"
-                />
-              </div>
-              <CardContent className="flex flex-col items-center gap-2 my-2">
-                <img
-                  src={logo}
-                  alt={`${referral.username} profile`}
-                  className="w-12 h-12"
-                />
-                <CardTitle>{referral.username || "Unknown"}</CardTitle>
-                <CardDescription className="font-semibold text-black">
-                  {referral.email || "No email provided"}
-                </CardDescription>
-              </CardContent>
-            </Card>
-          ))
-        ) : (
-          <p className="col-span-2 text-center text-gray-600">
-            No referrals yet.
-          </p>
-        )}
-      </div>
+          {referrals.length > 0 ? (
+            referrals.map((referral) => (
+              <Card
+                key={referral._id}
+                className="relative flex items-center justify-center text-black rounded-lg bg-slate-200 border-gray"
+              >
+                <div className="absolute top-0 right-0 flex">
+                  <CiEdit
+                    onClick={() => handleEdit(referral)}
+                    className="text-3xl text-blue-600 cursor-pointer"
+                  />
+                </div>
+                <CardContent className="flex flex-col items-center gap-2 my-2">
+                  <img
+                    src={logo}
+                    alt={`${referral.username} profile`}
+                    className="w-12 h-12"
+                  />
+                  <CardTitle>{referral.username || "Unknown"}</CardTitle>
+                  <CardDescription className="font-semibold text-black">
+                    {referral.email || "No email provided"}
+                  </CardDescription>
+                </CardContent>
+              </Card>
+            ))
+          ) : (
+            <p className="col-span-2 text-center text-gray-600">
+              No referrals yet.
+            </p>
+          )}
+        </div>
+      )}
 
       {/* Edit Modal */}
       {isEditModalOpen && (
         <div className="fixed top-0 left-0 flex items-center justify-center w-full h-full bg-black bg-opacity-50">
-          <div className="p-6 bg-white min-w-[18rem] sm:min-w-[25rem] lg:min-w-[30rem]  rounded-lg shadow-lg">
+          <div className="p-6 bg-white min-w-[18rem] sm:min-w-[25rem] lg:min-w-[30rem] rounded-lg shadow-lg">
             <h2 className="mb-4 text-xl font-bold">Edit User</h2>
             <form onSubmit={handleEditSubmit}>
               <div className="mb-4">
