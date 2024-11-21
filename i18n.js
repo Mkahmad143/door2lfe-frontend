@@ -13,7 +13,7 @@ i18n.use(initReactI18next).init({
     },
   },
   fallbackLng: "en", // Fallback language if translation is missing
-  lng: "es",
+  lng: "en",
   interpolation: {
     escapeValue: false, // React already does escaping
   },
