@@ -57,7 +57,7 @@ const UserProfile = () => {
           </h1>
         </Link>
         <h1 className="mb-8 text-3xl font-bold text-center text-white">
-          User Profile
+          Admin Panel
         </h1>
         <DonationAndDoorStatus
           bankAmount={bankData}
