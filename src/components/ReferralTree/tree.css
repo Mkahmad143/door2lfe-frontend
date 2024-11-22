@@ -7,8 +7,6 @@
   justify-content: center;
   height: max-content;
   padding: 7rem;
-  background-color: #1e293b; /* Slate-800 for background */
-  color: #bac8d9; /* Light gray for text */
 
   width: 100vw;
 }
@@ -52,25 +50,6 @@
 .referrals-container {
   display: flex;
   justify-content: center;
-}
-
-.child-referral {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  margin: 0 10px;
-  position: relative;
-}
-
-.child-referral::before {
-  content: "";
-  position: absolute;
-  top: 10px;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 2px;
-  height: 30px;
-  background-color: #bac8d9;
 }
 
 .node-container .tier-2 .node {
@@ -133,10 +112,6 @@
   .referrals-container {
     gap: 10px;
   }
-
-  .child-referral {
-    margin: 0 10px;
-  }
 }
 
 /* Mobile-first - Very small screens (max-width: 480px) */
@@ -152,9 +127,5 @@
 
   .referrals-container {
     gap: 8px;
-  }
-
-  .child-referral {
-    margin: 0 8px;
   }
 }

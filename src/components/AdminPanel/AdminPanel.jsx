@@ -18,7 +18,7 @@ const AdminPanel = () => {
     <>
       <Navbar />
       <div className="flex flex-col min-h-screen text-gray-100 mt-14 bg-gradient-to-r from-gray-800 via-gray-900 to-black">
-        <header className="p-6 text-center">
+        <header className="text-center ">
           <h1 className="text-4xl font-extrabold text-white drop-shadow-md">
             {t("Admin Dashboard")} {/* Translated text */}
           </h1>
@@ -27,20 +27,8 @@ const AdminPanel = () => {
           </p>
         </header>
 
-        <main className="flex flex-col items-center justify-center flex-1 px-4">
+        <main className="flex flex-col items-center justify-center px-4 mt-16 lg:mt-[9rem]">
           <div className="grid w-full max-w-4xl grid-cols-1 gap-6 md:grid-cols-3">
-            <button
-              className="flex flex-col items-center justify-center px-6 py-4 transition transform bg-[#58f5d8] rounded-lg shadow-lg  hover:scale-105"
-              onClick={() => navigate("/admin/dashboard/user-profile")}
-            >
-              <span className="text-xl font-bold">{t("User Profiles")}</span>{" "}
-              {/* Translated text */}
-              <p className="mt-1 text-sm text-gray-200">
-                {t("Manage user accounts")}
-              </p>{" "}
-              {/* Translated text */}
-            </button>
-
             <button
               className="flex flex-col items-center justify-center px-6 py-4 transition transform rounded-lg shadow-lg bg-[#58f5d8] hover:bg-greengrass hover:scale-105 hover:text-white"
               onClick={() => navigate("/admin/dashboard/referrals")}

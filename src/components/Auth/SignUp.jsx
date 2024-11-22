@@ -107,7 +107,6 @@ const SignUp = () => {
           registerData
         ),
         {
-          pending: "Registering your account...",
           success: t("signUp.accountCreated"),
           error: {
             render({ data }) {

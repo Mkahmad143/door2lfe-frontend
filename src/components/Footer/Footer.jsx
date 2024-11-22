@@ -6,7 +6,7 @@ const Footer = () => {
 
   return (
     <div>
-      <footer className="w-full py-10 mx-auto text-white md:mt-16">
+      <footer className="w-full py-10 mx-auto text-lightgray md:mt-16 ">
         <div className="flex justify-center flex-col items-center border-t-[.08rem] border-b-[.08rem]">
           <div className="grid grid-cols-1 gap-12 pt-6 sm:grid-cols-2 lg:grid-cols-4">
             {/* Product Section */}

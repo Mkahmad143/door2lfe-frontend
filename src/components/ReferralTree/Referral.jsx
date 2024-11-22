@@ -43,7 +43,7 @@ const ReferralTree = () => {
 
     displayedCount++;
 
-    const referralsCount = 15;
+    const referralsCount = 16;
     const isTier4With15Members = tier === 4 && referralsCount;
 
     const { renderedNodes: childNodes, displayedCount: updatedCount } =
@@ -72,23 +72,23 @@ const ReferralTree = () => {
       renderedNodes: (
         <>
           <Dialog>
-            <div className={`node-container tier-${tier}`}>
-              {isTier4With15Members ? (
+            <div className={`node-container  tier-${tier}`}>
+              {isTier4With15Members && referralsCount ? (
                 <DialogTrigger>
                   <div className="node hover:scale-90">
-                    <p className="username">{node.username}</p>
+                    <p className="username ">{node.username}</p>
                     <p className="text-[.8rem] email">{node.email}</p>
                   </div>
                 </DialogTrigger>
               ) : (
-                <div className="node">
+                <div className="node ">
                   <p className="username">{node.username}</p>
                   <p className="text-[.8rem] email">{node.email}</p>
                 </div>
               )}
 
               {childNodes.length > 0 && (
-                <div className="flex-wrap referrals-container xl:flex-nowrap">
+                <div className="flex-wrap referrals-container xl:flex-nowrap ">
                   {childNodes}
                 </div>
               )}
@@ -116,7 +116,7 @@ const ReferralTree = () => {
   return (
     <>
       <Navbar />
-      <div className="relative mt-16 text-white tree-container">
+      <div className="relative mt-16 text-white lg:mt-0 bg-gray tree-container">
         <div className="left-0 top-[12rem] grid grid-cols-2 mx-16 rounded-lg w-[14rem] h-[8rem] place-items-center text-gray bg-lightgray md:absolute xl:left-[60rem] xl:top-[4rem]  my-7">
           <div className="flex flex-col gap-[.50rem] px-2 test-gray">
             <p className="bg-[#59f2d9] w-4 h-4 rounded-full"></p>
@@ -140,7 +140,7 @@ const ReferralTree = () => {
           <h2 className="mx-auto text-4xl text-white">{t("Referral Tree")}</h2>
           <h2 className="mx-auto mt-2 text-sm text-center text-lightgray">
             {t(
-              "Send donations request to your 3rd Generation By Clicking on it"
+              "Complete your 3rd Generation & Send donations request By Clicking on it"
             )}
           </h2>
         </div>

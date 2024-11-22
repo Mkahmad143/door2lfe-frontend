@@ -31,6 +31,7 @@ const Page2 = () => {
           `https://door2life-backend.vercel.app/api/messages/payment-requests/${userId}`
         );
         if (response.status === 200) {
+          console.log(response);
           setData(response.data);
           setDoor(response.data[0].recipient.doorStatus);
         }
@@ -57,11 +58,12 @@ const Page2 = () => {
       recipientId: id,
     };
 
-    await toast.promise(
+    const response = await toast.promise(
       axios.patch(
         `https://door2life-backend.vercel.app/api/messages/payment-requests/${id}`,
         editData
       ),
+
       {
         pending: t("Marking as paid..."),
         success: t("Successfully marked as paid!"),
@@ -77,6 +79,7 @@ const Page2 = () => {
         theme: "light",
       }
     );
+    console.log(response);
   };
 
   return (
@@ -126,7 +129,146 @@ const Page2 = () => {
                     {t(req.status)}
                   </CardDescription>
                   <CardDescription className=" text-gray">
-                    <strong>{formattedDoor}</strong>
+                    <div className="flex flex-col items-center">
+                      {req.amount === 200 && (
+                        <>
+                          <div className="flex ">
+                            <td className="font-semibold">{t("Door")}:</td>
+                            <td>
+                              <strong className="inline-flex">2</strong>
+                            </td>
+                          </div>
+                        </>
+                      )}
+                      {req.amount === 600 && (
+                        <>
+                          <div className="flex">
+                            <td className="font-semibold">{t("Door")}:</td>
+                            <td>
+                              <strong>3</strong>
+                            </td>
+                          </div>
+                        </>
+                      )}
+                      {req.amount === 1800 && (
+                        <>
+                          <div className="flex ">
+                            <td className="font-semibold">{t("Door")}:</td>
+                            <td>
+                              <strong>4</strong>
+                            </td>
+                          </div>
+                        </>
+                      )}{" "}
+                      {req.amount === 3000 && (
+                        <>
+                          <div className="flex">
+                            <td className="font-semibold">{t("Door")}:</td>
+                            <td>
+                              <strong>5</strong>
+                            </td>
+                          </div>
+                        </>
+                      )}{" "}
+                      {req.amount === 4000 && (
+                        <>
+                          <div className="flex">
+                            <td className="font-semibold">{t("Door")}:</td>
+                            <td>
+                              <strong>6</strong>
+                            </td>
+                          </div>
+                        </>
+                      )}{" "}
+                      {req.amount === 50 && (
+                        <>
+                          <div className="flex">
+                            <td className="font-semibold">{t("Door")}:</td>
+                            <td>
+                              <strong>7</strong>
+                            </td>
+                          </div>
+                        </>
+                      )}{" "}
+                      {req.amount === 200 &&
+                        req.recipient.doorStatus[1] === "true" && (
+                          <>
+                            <div className="flex">
+                              <td className="font-semibold">{t("Door")}:</td>
+                              <td>
+                                <strong>8</strong>
+                              </td>
+                            </div>
+                          </>
+                        )}{" "}
+                      {req.amount === 600 &&
+                        req.recipient.doorStatus[2] === "true" && (
+                          <>
+                            <div className="flex">
+                              <td className="font-semibold">{t("Door")}:</td>
+                              <td>
+                                <strong>9</strong>
+                              </td>
+                            </div>
+                          </>
+                        )}{" "}
+                      {req.amount === 1800 &&
+                        req.recipient.doorStatus[3] === "true" && (
+                          <>
+                            <div className="flex">
+                              {" "}
+                              <td className="font-semibold">{t("Door")}:</td>
+                              <td>
+                                <strong>10</strong>
+                              </td>
+                            </div>
+                          </>
+                        )}{" "}
+                      {req.amount === 3000 &&
+                        req.recipient.doorStatus[4] === "true" && (
+                          <>
+                            <div className="flex">
+                              <td className="font-semibold">{t("Door")}:</td>
+                              <td>
+                                <strong>11</strong>
+                              </td>
+                            </div>
+                          </>
+                        )}{" "}
+                      {req.amount === 4000 &&
+                        req.recipient.doorStatus[5] === "true" && (
+                          <>
+                            <div className="flex">
+                              <td className="font-semibold">{t("Door")}:</td>
+                              <td>
+                                <strong>12</strong>
+                              </td>
+                            </div>
+                          </>
+                        )}{" "}
+                      {req.amount === 12000 &&
+                        req.recipient.doorStatus[6] === "true" && (
+                          <>
+                            <div className="flex">
+                              <td className="font-semibold">{t("Door")}:</td>
+                              <td>
+                                <strong>13</strong>
+                              </td>
+                            </div>
+                          </>
+                        )}{" "}
+                      {req.amount === 15000 &&
+                        req.recipient.doorStatus[7] === "true" && (
+                          <>
+                            <div className="flex">
+                              <td className="font-semibold">{t("Door")}:</td>
+                              <td>
+                                <strong className="inline-flex">14</strong>
+                              </td>
+                            </div>
+                          </>
+                        )}{" "}
+                    </div>
                   </CardDescription>
                 </CardContent>
                 <CardFooter className="flex justify-center gap-4 -mt-4">

@@ -19,6 +19,7 @@ const ReceviceGiftsFromOwner = () => {
   const { t } = useTranslation(); // Initialize translation
   const [pendingRequests, setPendingRequests] = useState([]);
   const [door, setDoor] = useState({});
+  const [status, setStatus] = useState("pending");
   const userId = sessionStorage.getItem("UserId");
 
   // Fetch Data
@@ -30,6 +31,8 @@ const ReceviceGiftsFromOwner = () => {
         );
 
         if (pendingResponse.status === 200) {
+          console.log(pendingResponse);
+
           setPendingRequests(pendingResponse.data);
           setDoor(pendingResponse.data[0]?.requester?.doorStatus || {});
         }
@@ -49,7 +52,7 @@ const ReceviceGiftsFromOwner = () => {
 
   // Format the door for display
   const formattedDoor = currentDoor
-    ? ` ${currentDoor - 1}`
+    ? ` ${currentDoor}`
     : t("All doors unlocked");
 
   const handleSend = async (id) => {
@@ -127,12 +130,116 @@ const ReceviceGiftsFromOwner = () => {
                             <strong>${req.amount}</strong>
                           </td>
                         </tr>
-                        <tr>
-                          <td className="font-semibold">{t("Door")}:</td>
-                          <td>
-                            <strong>{formattedDoor}</strong>
-                          </td>
-                        </tr>
+                        {req.amount === 200 && (
+                          <>
+                            <td className="font-semibold">{t("Door")}:</td>
+                            <td>
+                              <strong>2</strong>
+                            </td>
+                          </>
+                        )}
+                        {req.amount === 600 && (
+                          <>
+                            <td className="font-semibold">{t("Door")}:</td>
+                            <td>
+                              <strong>2</strong>
+                            </td>
+                          </>
+                        )}
+                        {req.amount === 1800 && (
+                          <>
+                            <td className="font-semibold">{t("Door")}:</td>
+                            <td>
+                              <strong>4</strong>
+                            </td>
+                          </>
+                        )}{" "}
+                        {req.amount === 3000 && (
+                          <>
+                            <td className="font-semibold">{t("Door")}:</td>
+                            <td>
+                              <strong>5</strong>
+                            </td>
+                          </>
+                        )}{" "}
+                        {req.amount === 4000 && (
+                          <>
+                            <td className="font-semibold">{t("Door")}:</td>
+                            <td>
+                              <strong>6</strong>
+                            </td>
+                          </>
+                        )}{" "}
+                        {req.amount === 50 && (
+                          <>
+                            <td className="font-semibold">{t("Door")}:</td>
+                            <td>
+                              <strong>7</strong>
+                            </td>
+                          </>
+                        )}{" "}
+                        {req.amount === 200 &&
+                          req.requester.doorStatus[1] === "true" && (
+                            <>
+                              <td className="font-semibold">{t("Door")}:</td>
+                              <td>
+                                <strong>8</strong>
+                              </td>
+                            </>
+                          )}{" "}
+                        {req.amount === 600 &&
+                          req.requester.doorStatus[2] === "true" && (
+                            <>
+                              <td className="font-semibold">{t("Door")}:</td>
+                              <td>
+                                <strong>9</strong>
+                              </td>
+                            </>
+                          )}{" "}
+                        {req.amount === 1800 &&
+                          req.requester.doorStatus[3] === "true" && (
+                            <>
+                              <td className="font-semibold">{t("Door")}:</td>
+                              <td>
+                                <strong>10</strong>
+                              </td>
+                            </>
+                          )}{" "}
+                        {req.amount === 3000 &&
+                          req.requester.doorStatus[4] === "true" && (
+                            <>
+                              <td className="font-semibold">{t("Door")}:</td>
+                              <td>
+                                <strong>13</strong>
+                              </td>
+                            </>
+                          )}{" "}
+                        {req.amount === 4000 &&
+                          req.requester.doorStatus[5] === "true" && (
+                            <>
+                              <td className="font-semibold">{t("Door")}:</td>
+                              <td>
+                                <strong>12</strong>
+                              </td>
+                            </>
+                          )}{" "}
+                        {req.amount === 12000 &&
+                          req.requester.doorStatus[6] === "true" && (
+                            <>
+                              <td className="font-semibold">{t("Door")}:</td>
+                              <td>
+                                <strong>13</strong>
+                              </td>
+                            </>
+                          )}{" "}
+                        {req.amount === 15000 && (
+                          <>
+                            <td className="font-semibold">{t("Door")}:</td>
+                            <td>
+                              <strong>14</strong>
+                            </td>
+                          </>
+                        )}{" "}
                       </tbody>
                     </table>
                   </CardContent>

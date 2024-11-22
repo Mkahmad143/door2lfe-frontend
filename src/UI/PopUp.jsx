@@ -54,19 +54,32 @@ export function PopUp({ username, email, id, doorStatus }) {
       requesterId: reqId,
       recipientId: id,
       amount,
+      door: doorValues.find((d) => d.donationAmount === amount)?.door, // Find door based on amount
     };
 
-    await toast.promise(
-      axios.post(
+    try {
+      const response = await axios.post(
         "https://door2life-backend.vercel.app/api/messages/payment-requests",
         data
-      ),
-      {
-        pending: "Sending donation request...",
-        success: "Donation sent successfully! 🎉",
-        error: "Donation Already Sent!",
-      },
-      {
+      );
+
+      if (response.status === 201) {
+        toast.success(t("Donation sent successfully! 🎉"), {
+          position: "top-center",
+          autoClose: 1200,
+          hideProgressBar: true,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          theme: "light",
+        });
+      }
+    } catch (error) {
+      // Handle error based on the response message
+      const errorMessage =
+        error?.response?.data?.message || t("Donation Already Sent!");
+
+      toast.error(errorMessage, {
         position: "top-center",
         autoClose: 1200,
         hideProgressBar: true,
@@ -74,17 +87,16 @@ export function PopUp({ username, email, id, doorStatus }) {
         pauseOnHover: true,
         draggable: true,
         theme: "light",
-      }
-    );
+      });
+    }
   };
 
   return (
-    <DialogContent className="sm:max-w-[425px]  bg-lightgray text-gray border-gray">
+    <DialogContent className="sm:max-w-[425px] bg-lightgray text-gray border-gray">
       <DialogHeader>
         <DialogTitle>{username}</DialogTitle>
         <DialogDescription>{email}</DialogDescription>
-        <Label htmlFor="Amount">{t("yourAmount")}</Label>{" "}
-        {/* Translated label */}
+        <Label htmlFor="Amount">{t("yourAmount")}</Label>
         <Input
           type="number"
           value={amount}
@@ -95,8 +107,7 @@ export function PopUp({ username, email, id, doorStatus }) {
 
       <DialogFooter>
         <div onClick={handleSend}>
-          <Button type="submit">{t("sendDonationRequest")}</Button>{" "}
-          {/* Translated button text */}
+          <Button type="submit">{t("sendDonationRequest")}</Button>
         </div>
       </DialogFooter>
       <ToastContainer stacked />
