@@ -106,7 +106,7 @@ export function PopUp({ username, email, id, doorStatus }) {
       </DialogHeader>
 
       <DialogFooter>
-        <div onClick={handleSend}>
+        <div onClick={handleSend} className="mx-auto w-max">
           <Button type="submit">{t("sendDonationRequest")}</Button>
         </div>
       </DialogFooter>

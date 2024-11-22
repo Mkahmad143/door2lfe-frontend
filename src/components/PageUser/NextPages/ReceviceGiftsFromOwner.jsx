@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 import {
   Card,
   CardContent,
+  CardDescription,
   CardFooter,
   CardHeader,
   CardTitle,
@@ -19,7 +20,8 @@ const ReceviceGiftsFromOwner = () => {
   const { t } = useTranslation(); // Initialize translation
   const [pendingRequests, setPendingRequests] = useState([]);
   const [door, setDoor] = useState({});
-  const [status, setStatus] = useState("pending");
+  const [status, setStatus] = useState([]);
+  const [PaymentStatus, setPaymentStatus] = useState("");
   const userId = sessionStorage.getItem("UserId");
 
   // Fetch Data
@@ -31,8 +33,20 @@ const ReceviceGiftsFromOwner = () => {
         );
 
         if (pendingResponse.status === 200) {
-          console.log(pendingResponse);
+          const paymentRequests =
+            pendingResponse.data[0]?.requester?.paymentRequests || [];
 
+          // Filter payment requests specific to the userId
+          const filterStatus = paymentRequests.filter(
+            (status) => status.recipient === userId
+          );
+
+          // Update states based on filtered results
+          if (filterStatus.length > 0) {
+            setPaymentStatus(filterStatus[0]?.status || "unknown");
+          }
+
+          setStatus(paymentRequests);
           setPendingRequests(pendingResponse.data);
           setDoor(pendingResponse.data[0]?.requester?.doorStatus || {});
         }
@@ -49,8 +63,8 @@ const ReceviceGiftsFromOwner = () => {
     (door &&
       Object.entries(door).find(([key, value]) => value === false)?.[0]) ||
     null;
+  const filterStatus = status.filter((status) => status._id === userId);
 
-  // Format the door for display
   const formattedDoor = currentDoor
     ? ` ${currentDoor}`
     : t("All doors unlocked");
@@ -243,7 +257,21 @@ const ReceviceGiftsFromOwner = () => {
                       </tbody>
                     </table>
                   </CardContent>
-                  <CardFooter className="flex justify-center gap-4 -mt-4">
+                  <CardDescription
+                    className={(() => {
+                      if (PaymentStatus === "pending") {
+                        return "bg-red-500 text-red-600 mx-auto rounded-lg w-max px-2 bg-opacity-20 uppercase";
+                      } else if (PaymentStatus === "waiting for approval") {
+                        return "bg-orange-500 text-orange-600 mx-auto rounded-lg w-max px-2 bg-opacity-20 uppercase";
+                      } else if (PaymentStatus === "paid") {
+                        return "bg-[#3dda5fe5] text-[#117813] mx-auto rounded-lg w-max px-2 bg-opacity-100 uppercase";
+                      }
+                      return "bg-[#3dda5fe5] text-[#117813] mx-auto rounded-lg w-max px-2 bg-opacity-100 uppercase";
+                    })()}
+                  >
+                    {PaymentStatus}
+                  </CardDescription>
+                  <CardFooter className="flex justify-center gap-4 mt-4">
                     <MdDone
                       onClick={() => handleSend(req.requester._id)}
                       className="p-1 text-4xl text-black transition-all rounded-lg cursor-pointer hover:scale-75 hover:bg-green "

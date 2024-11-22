@@ -29,6 +29,7 @@ const DoorPages = () => {
   const navigate = useNavigate();
   const [selectedPage, setSelectedPage] = useState(null);
   const [requester, setRequester] = useState("");
+  const [referralCode, setReferralCode] = useState("");
 
   const userId = sessionStorage.getItem("UserId");
   useEffect(() => {
@@ -42,15 +43,30 @@ const DoorPages = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
+        // Fetch pending requests
         const pendingResponse = await axios.get(
           `https://door2life-backend.vercel.app/api/messages/pending-requests/${userId}`
         );
-        setRequester(pendingResponse.data[0].requester.username);
 
-        sessionStorage.setItem(
-          "requseter",
-          pendingResponse.data[0].requester.username
+        // Fetch user data
+        const userref = await axios.get(
+          `https://door2life-backend.vercel.app/api/user/${userId}`
         );
+
+        // Process user referral code
+        if (userref.status === 200 && userref.data?.referralCode) {
+          const referral = userref.data.referralCode.toString();
+          setReferralCode(referral);
+          console.log("Referral Code:", referral); // Log safely
+        }
+
+        // Process requester data
+        const requesterUsername =
+          pendingResponse.data[0]?.requester?.username || "Unknown";
+        setRequester(requesterUsername);
+
+        // Save requester username in session storage
+        sessionStorage.setItem("requester", requesterUsername);
       } catch (error) {
         console.error("Error fetching requests:", error);
       }
@@ -66,8 +82,10 @@ const DoorPages = () => {
   return (
     <>
       <Navbar />
-      <div className="flex flex-col mt-16 h-max md:flex-row lg:mx-16">
-        {/* Sidebar with fixed width and height */}
+      <h1 className="mt-10 text-2xl text-center lg:mx-16 lg:text-right text-lightgray py-9 md:mt-4">
+        Referral Code : <span className="font-semibold"> {referralCode}</span>
+      </h1>
+      <div className="flex flex-col mt-1 h-max md:flex-row lg:mx-16">
         <div className="flex-none w-full p-5 overflow-y-auto bg-gray-200 md:w-60 lg:w-72 h-96">
           {doorPages.map((page, index) => (
             <button

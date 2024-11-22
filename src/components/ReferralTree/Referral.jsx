@@ -43,8 +43,8 @@ const ReferralTree = () => {
 
     displayedCount++;
 
-    const referralsCount = 16;
-    const isTier4With15Members = tier === 4 && referralsCount;
+    const referralsCount = 15;
+    const isTier4With15Members = tier === 4 && referralsCount < 16;
 
     const { renderedNodes: childNodes, displayedCount: updatedCount } =
       node.referrals && node.referrals.length > 0
@@ -73,7 +73,7 @@ const ReferralTree = () => {
         <>
           <Dialog>
             <div className={`node-container  tier-${tier}`}>
-              {isTier4With15Members && referralsCount ? (
+              {isTier4With15Members || referralsCount < 15 ? (
                 <DialogTrigger>
                   <div className="node hover:scale-90">
                     <p className="username ">{node.username}</p>

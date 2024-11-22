@@ -15,10 +15,9 @@ const AdminReferrals = () => {
 
   useEffect(() => {
     const fetchReferralTree = async () => {
-      const userId = sessionStorage.getItem("UserId");
       try {
         const response = await axios.get(
-          `https://door2life-backend.vercel.app/api/auth/referrals/${userId}`
+          `https://door2life-backend.vercel.app/api/auth/referrals/673d75c5d4bbde57134bc77a`
         );
         setReferralTree(response.data.referralTree);
         setCurrentNode(response.data.referralTree); // Start with the root node
