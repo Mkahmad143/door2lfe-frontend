@@ -27,6 +27,7 @@ const doorValues = [
   { door: 11, donationAmount: 3000, amountReceived: 24000 },
   { door: 12, donationAmount: 4000, amountReceived: 32000 },
   { door: 13, donationAmount: 12000, amountReceived: 96000 },
+  { door: 14, donationAmount: 15000, amountReceived: 120000 },
 ];
 
 export function PopUp({ username, email, id, doorStatus }) {

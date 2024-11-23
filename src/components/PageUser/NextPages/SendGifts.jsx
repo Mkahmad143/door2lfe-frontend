@@ -257,17 +257,16 @@ const Page2 = () => {
                             </div>
                           </>
                         )}{" "}
-                      {req.amount === 15000 &&
-                        req.recipient.doorStatus[7] === "true" && (
-                          <>
-                            <div className="flex">
-                              <td className="font-semibold">{t("Door")}:</td>
-                              <td>
-                                <strong className="inline-flex">14</strong>
-                              </td>
-                            </div>
-                          </>
-                        )}{" "}
+                      {req.amount === 15000 && (
+                        <>
+                          <div className="flex">
+                            <td className="font-semibold">{t("Door")}:</td>
+                            <td>
+                              <strong className="inline-flex">14</strong>
+                            </td>
+                          </div>
+                        </>
+                      )}{" "}
                     </div>
                   </CardDescription>
                 </CardContent>

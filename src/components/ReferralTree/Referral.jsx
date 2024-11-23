@@ -8,6 +8,8 @@ import Footer from "../Footer/Footer";
 import Navbar from "../Navbar/Navbar";
 import { useTranslation } from "react-i18next"; // Import useTranslation hook
 
+import FamilyTreeDiagram from "./CircleRefferal";
+
 const ReferralTree = () => {
   const { t, i18n } = useTranslation(); // Initialize translation
   const [referralTree, setReferralTree] = useState(null);
@@ -145,7 +147,10 @@ const ReferralTree = () => {
           </h2>
         </div>
         {referralTree ? (
-          <div className="root-node">{renderedNodes}</div>
+          <>
+            {" "}
+            <div className="root-node">{renderedNodes}</div>
+          </>
         ) : (
           <p className="text-white animate-spin transform-origin text-7xl">.</p>
         )}
