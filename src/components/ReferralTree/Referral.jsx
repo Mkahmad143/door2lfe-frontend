@@ -23,8 +23,12 @@ const ReferralTree = () => {
       const userId = sessionStorage.getItem("UserId");
       try {
         const [treeResponse, doorResponse] = await Promise.all([
-          axios.get(`http://localhost:8000/api/auth/referrals/${userId}`),
-          axios.get(`http://localhost:8000/api/user/door-status/${userId}`), // Fetch door status API
+          axios.get(
+            `https://door2life-backend.vercel.app/api/auth/referrals/${userId}`
+          ),
+          axios.get(
+            `https://door2life-backend.vercel.app/api/user/door-status/${userId}`
+          ), // Fetch door status API
         ]);
 
         setReferralTree(treeResponse.data.referralTree);

@@ -15,7 +15,7 @@ const ReferralTreeCanvas = () => {
     const userId = sessionStorage.getItem("UserId");
     try {
       const response = await axios.get(
-        `http://localhost:8000/api/auth/referrals/${userId}`
+        `https://door2life-backend.vercel.app/api/auth/referrals/${userId}`
       );
       setReferralTree(response.data.referralTree);
     } catch (error) {

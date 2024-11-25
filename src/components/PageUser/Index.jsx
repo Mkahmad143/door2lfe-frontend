@@ -45,12 +45,12 @@ const DoorPages = () => {
       try {
         // Fetch pending requests
         const pendingResponse = await axios.get(
-          `http://localhost:8000/api/messages/pending-requests/${userId}`
+          `https://door2life-backend.vercel.app/api/messages/pending-requests/${userId}`
         );
 
         // Fetch user data
         const userref = await axios.get(
-          `http://localhost:8000/api/user/${userId}`
+          `https://door2life-backend.vercel.app/api/user/${userId}`
         );
 
         // Process user referral code

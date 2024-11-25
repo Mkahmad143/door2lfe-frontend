@@ -60,7 +60,7 @@ export function PopUp({ username, email, id, doorStatus }) {
 
     try {
       const response = await axios.post(
-        "http://localhost:8000/api/messages/payment-requests",
+        "https://door2life-backend.vercel.app/api/messages/payment-requests",
         data
       );
 

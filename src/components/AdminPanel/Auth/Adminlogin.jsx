@@ -35,7 +35,10 @@ const AdminLogin = () => {
 
     await toast
       .promise(
-        axios.post("http://localhost:8000/api/auth/admin/login", loginData),
+        axios.post(
+          "https://door2life-backend.vercel.app/api/auth/admin/login",
+          loginData
+        ),
         {
           pending: t("Logging in..."),
           success: t("Login successful! 🎉"),

@@ -20,7 +20,7 @@ const ReceiveGifts = () => {
         }
 
         const response = await axios.get(
-          `http://localhost:8000/api/user/${userId}`
+          `https://door2life-backend.vercel.app/api/user/${userId}`
         );
 
         if (response.status === 200) {

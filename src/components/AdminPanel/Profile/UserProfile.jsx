@@ -17,10 +17,10 @@ const UserProfile = () => {
       try {
         const userId = "673d75c5d4bbde57134bc77a";
         const response = await axios.get(
-          `http://localhost:8000/api/user/${userId}`
+          `https://door2life-backend.vercel.app/api/user/${userId}`
         );
         const bankResponse = await axios.get(
-          "http://localhost:8000/api/bank/main-bank"
+          "https://door2life-backend.vercel.app/api/bank/main-bank"
         );
         if (bankResponse.status === 200) {
           setBankData(bankResponse.data);

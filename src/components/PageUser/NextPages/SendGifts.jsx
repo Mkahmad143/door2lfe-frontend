@@ -28,7 +28,7 @@ const Page2 = () => {
     const request = async () => {
       try {
         const response = await axios.get(
-          `http://localhost:8000/api/messages/payment-requests/${userId}`
+          `https://door2life-backend.vercel.app/api/messages/payment-requests/${userId}`
         );
         if (response.status === 200) {
           console.log(response);
@@ -60,7 +60,7 @@ const Page2 = () => {
 
     const response = await toast.promise(
       axios.patch(
-        `http://localhost:8000/api/messages/payment-requests/${id}`,
+        `https://door2life-backend.vercel.app/api/messages/payment-requests/${id}`,
         editData
       ),
 

@@ -24,7 +24,7 @@ const Register = () => {
           return;
         }
         const res = await axios.get(
-          `http://localhost:8000/api/auth/referrals/${userId}`
+          `https://door2life-backend.vercel.app/api/auth/referrals/${userId}`
         );
 
         if (res.status === 200) {
@@ -60,7 +60,7 @@ const Register = () => {
     // Use toast.promise for better feedback
     await toast.promise(
       axios.patch(
-        `http://localhost:8000/api/user/${editData.userId}`,
+        `https://door2life-backend.vercel.app/api/user/${editData.userId}`,
         updateData
       ),
       {
