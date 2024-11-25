@@ -31,10 +31,7 @@ const Login = () => {
         // Display a toast promise while the request is in progress
         await toast
           .promise(
-            axios.post(
-              "https://door2life-backend.vercel.app/api/auth/login",
-              loginData
-            ),
+            axios.post("http://localhost:8000/api/auth/login", loginData),
             {
               pending: t("loginInProgress"), // Translation for "Logging in..."
               success: t("loginSuccess"), // Translation for successful login

@@ -102,10 +102,7 @@ const SignUp = () => {
 
     await toast
       .promise(
-        axios.post(
-          "https://door2life-backend.vercel.app/api/auth/register",
-          registerData
-        ),
+        axios.post("http://localhost:8000/api/auth/register", registerData),
         {
           success: t("signUp.accountCreated"),
           error: {

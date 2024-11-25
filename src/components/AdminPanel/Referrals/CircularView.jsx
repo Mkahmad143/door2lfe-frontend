@@ -1,8 +1,7 @@
 import React, { useEffect, useState, useRef } from "react";
 import axios from "axios";
 import { useTranslation } from "react-i18next";
-import Navbar from "../Navbar/Navbar";
-import Footer from "../Footer/Footer";
+
 import "./tree.css";
 
 const ReferralTreeCanvas = () => {
@@ -15,7 +14,7 @@ const ReferralTreeCanvas = () => {
     const userId = sessionStorage.getItem("UserId");
     try {
       const response = await axios.get(
-        `http://localhost:8000/api/auth/referrals/${userId}`
+        `http://localhost:8000/api/auth/referrals/673d75c5d4bbde57134bc77a`
       );
       setReferralTree(response.data.referralTree);
     } catch (error) {
@@ -180,7 +179,6 @@ const ReferralTreeCanvas = () => {
 
   return (
     <>
-      <Navbar />
       <div className="w-full px-4 mt-16 mb-16 bg-white">
         <div className="flex flex-col items-center justify-center">
           <h2 className="mx-auto text-4xl text-black">{t("Referral Tree")}</h2>
@@ -207,7 +205,6 @@ const ReferralTreeCanvas = () => {
           />
         </div>
       </div>
-      <Footer />
     </>
   );
 };

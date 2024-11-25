@@ -14,7 +14,7 @@ const MainBank = () => {
     const fetchBalance = async () => {
       // Simulate API response
       const response = await axios.get(
-        "https://door2life-backend.vercel.app/api/bank/main-bank"
+        "http://localhost:8000/api/bank/main-bank"
       );
       const bankAmount = response.data.length * 50;
 

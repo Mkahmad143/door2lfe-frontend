@@ -7,17 +7,20 @@ import { Dialog, DialogTrigger } from "../../ui/dialog";
 import Footer from "../UI/Footer";
 import Navbar from "../UI/Navbar";
 import { useTranslation } from "react-i18next"; // Import translation hook
-
+import ReferralTreeCanvasAdmin from "./CircularView";
+import { Button } from "../../ui/button";
 const AdminReferrals = () => {
   const [referralTree, setReferralTree] = useState(null); // Full tree
   const [currentNode, setCurrentNode] = useState(null); // Currently displayed node
   const { t } = useTranslation(); // Initialize translation hook
+  const button = ["Tree View", "Circular View"];
+  const [view, setView] = useState("Tree View");
 
   useEffect(() => {
     const fetchReferralTree = async () => {
       try {
         const response = await axios.get(
-          `https://door2life-backend.vercel.app/api/auth/referrals/673d75c5d4bbde57134bc77a`
+          `http://localhost:8000/api/auth/referrals/673d75c5d4bbde57134bc77a`
         );
         setReferralTree(response.data.referralTree);
         setCurrentNode(response.data.referralTree); // Start with the root node
@@ -107,7 +110,23 @@ const AdminReferrals = () => {
           )}
         </div>
         {currentNode ? (
-          <div className="root-node">{renderTree(currentNode)}</div>
+          <>
+            <div
+              className={`flex items-center gap-2 my-10 justify-center w-full`}
+            >
+              {button.map((btn) => (
+                <Button
+                  onClick={() => setView(btn)}
+                  className={` ${view === btn ? "bg-gray text-white" : ""}`}
+                >
+                  {btn}
+                </Button>
+              ))}
+            </div>
+
+            {view === "Tree View" && renderTree(currentNode)}
+            {view === "Circular View" && <ReferralTreeCanvasAdmin />}
+          </>
         ) : (
           <p className="text-white animate-spin transform-origin text-7xl">.</p>
         )}

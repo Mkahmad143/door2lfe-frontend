@@ -9,7 +9,7 @@ const DonationTable = () => {
       try {
         const userId = sessionStorage.getItem("UserId");
         const response = await axios.get(
-          `https://door2life-backend.vercel.app/api/donate/get/${userId}`
+          `http://localhost:8000/api/donate/get/${userId}`
         );
         setDonations(response.data);
       } catch (error) {

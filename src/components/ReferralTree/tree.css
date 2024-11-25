@@ -7,6 +7,7 @@
   justify-content: center;
   height: max-content;
   padding: 7rem;
+
   width: 100vw;
 }
 
@@ -52,7 +53,7 @@
 }
 
 .node-container .tier-2 .node {
-  background-color: darkgreen;
+  background-color: #17bea2;
   color: #000;
   .email {
     color: #000;
@@ -61,6 +62,8 @@
 
 .node-container .tier-3 .node {
   background-color: #107766;
+  padding: 8px;
+
   color: #fff;
   .email {
     color: rgb(227, 226, 226);
@@ -69,6 +72,8 @@
 
 .node-container .tier-4 .node {
   background-color: #154c42;
+  padding: 8px;
+
   color: #fff;
   .email {
     color: #fff;

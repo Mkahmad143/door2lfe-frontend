@@ -42,9 +42,7 @@ const UserTable = () => {
 
   const fetchUsers = async () => {
     try {
-      const { data } = await axios.get(
-        "https://door2life-backend.vercel.app/api/user/get"
-      );
+      const { data } = await axios.get("http://localhost:8000/api/user/get");
       setUsers(data);
     } catch (error) {
       console.error("Error fetching user data:", error);
@@ -81,7 +79,7 @@ const UserTable = () => {
       }
 
       await axios.patch(
-        `https://door2life-backend.vercel.app/api/user/${editingUser._id}`,
+        `http://localhost:8000/api/user/${editingUser._id}`,
         dataToUpdate
       );
 

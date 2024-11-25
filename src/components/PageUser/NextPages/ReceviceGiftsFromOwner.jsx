@@ -29,7 +29,7 @@ const ReceviceGiftsFromOwner = () => {
     const fetchData = async () => {
       try {
         const pendingResponse = await axios.get(
-          `https://door2life-backend.vercel.app/api/messages/pending-requests/${userId}`
+          `http://localhost:8000/api/messages/pending-requests/${userId}`
         );
 
         if (pendingResponse.status === 200) {
@@ -77,7 +77,7 @@ const ReceviceGiftsFromOwner = () => {
 
     await toast.promise(
       axios.post(
-        `https://door2life-backend.vercel.app/api/messages/pending-requests/mark-approval`,
+        `http://localhost:8000/api/messages/pending-requests/mark-approval`,
         editData
       ),
       {

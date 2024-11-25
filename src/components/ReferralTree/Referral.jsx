@@ -8,24 +8,23 @@ import Footer from "../Footer/Footer";
 import Navbar from "../Navbar/Navbar";
 import { useTranslation } from "react-i18next"; // Import useTranslation hook
 
-import FamilyTreeDiagram from "./CircleRefferal";
+import ReferralTreeCanvas from "./CircleRefferal";
+import { Button } from "../ui/button";
 
 const ReferralTree = () => {
   const { t, i18n } = useTranslation(); // Initialize translation
   const [referralTree, setReferralTree] = useState(null);
   const [doorStatus, setDoorStatus] = useState({});
+  const button = ["Tree View", "Circular View"];
+  const [view, setView] = useState("Tree View");
 
   useEffect(() => {
     const fetchReferralTree = async () => {
       const userId = sessionStorage.getItem("UserId");
       try {
         const [treeResponse, doorResponse] = await Promise.all([
-          axios.get(
-            `https://door2life-backend.vercel.app/api/auth/referrals/${userId}`
-          ),
-          axios.get(
-            `https://door2life-backend.vercel.app/api/user/door-status/${userId}`
-          ), // Fetch door status API
+          axios.get(`http://localhost:8000/api/auth/referrals/${userId}`),
+          axios.get(`http://localhost:8000/api/user/door-status/${userId}`), // Fetch door status API
         ]);
 
         setReferralTree(treeResponse.data.referralTree);
@@ -148,8 +147,23 @@ const ReferralTree = () => {
         </div>
         {referralTree ? (
           <>
-            {" "}
-            <div className="root-node">{renderedNodes}</div>
+            <div
+              className={`flex items-center gap-2 my-10 justify-center w-full`}
+            >
+              {button.map((btn) => (
+                <Button
+                  onClick={() => setView(btn)}
+                  className={` ${
+                    view === btn ? "bg-green text-black" : "bg-gray"
+                  } `}
+                >
+                  {btn}
+                </Button>
+              ))}
+            </div>
+
+            {view === "Tree View" && renderedNodes}
+            {view === "Circular View" && <ReferralTreeCanvas />}
           </>
         ) : (
           <h1 className="w-full mx-auto mt-10 text-center text-black animate-spin transform-origin text-7xl ">
