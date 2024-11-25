@@ -72,7 +72,7 @@ const Login = () => {
     <>
       <Navbar />
       <div className="flex items-center justify-center min-h-screen bg-gray-100">
-        <div className="w-full max-w-md p-8 rounded-lg shadow-md bg-lightgray">
+        <div className="w-full max-w-md p-8 rounded-lg shadow-md bg-green">
           <h2 className="mb-6 text-2xl font-semibold text-center text-gray-800">
             {t("login")} {/* Using translation key for "Login" */}
           </h2>
@@ -117,7 +117,7 @@ const Login = () => {
             <button
               type="button"
               onClick={handlelogin}
-              className="w-full py-2 mt-4 font-semibold transition duration-300 rounded-lg bg-green hover:bg-darkGreen"
+              className="w-full py-2 mt-4 font-semibold transition duration-300 rounded-lg bg-grassGreen hover:bg-darkGreen"
             >
               {t("loginButton")} {/* Using translation key for button text */}
             </button>

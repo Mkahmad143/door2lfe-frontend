@@ -85,13 +85,13 @@ const DoorPages = () => {
       <h1 className="mt-10 text-2xl text-center lg:mx-16 lg:text-right text-lightgray py-9 md:mt-4">
         Referral Code : <span className="font-semibold"> {referralCode}</span>
       </h1>
-      <div className="flex flex-col mt-1 h-max md:flex-row lg:mx-16">
-        <div className="flex-none w-full p-5 overflow-y-auto bg-gray-200 md:w-60 lg:w-72 h-96">
+      <div className="flex flex-col mt-1 h-max md:flex-row lg:mx-16 ">
+        <div className="flex-none w-full m-5 overflow-y-auto text-black border rounded-md bg-green md:w-60 lg:w-72 h-96">
           {doorPages.map((page, index) => (
             <button
               key={index}
-              className={`w-full border text-[#bac8d9] p-2 text-left hover:bg-darkGreen hover:text-black ${
-                selectedPage === page.name ? "bg-green text-black" : ""
+              className={`w-full border text-gray p-2 text-left hover:bg-green hover:text-black ${
+                selectedPage === page.name ? "bg-grassGreen text-black" : ""
               }`}
               onClick={() => handleClick(page)}
             >

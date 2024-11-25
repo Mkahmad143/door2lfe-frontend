@@ -70,7 +70,7 @@ const Navbar = () => {
           </div>
 
           <div className="flex items-center ">
-            <div className="hidden px-4 py-1 transition-colors duration-300 rounded-md hover:bg-lightgreen hover:text-black md:block">
+            <div className="hidden px-4 py-1 transition-colors duration-300 rounded-md md:block">
               <Link
                 to="/"
                 className="text-white cursor-pointer hover:text-white"
@@ -81,20 +81,20 @@ const Navbar = () => {
 
             <Link
               to="/belief"
-              className="hidden px-4 py-1 transition-colors duration-300 rounded-md cursor-pointer text-lightgray hover:bg-black hover:text-white md:block"
+              className="hidden px-4 py-1 transition-colors duration-300 rounded-md cursor-pointer text-lightgray hover:bg-greengrass hover:text-white md:block"
             >
               {t("navbar.beliefs")}
             </Link>
 
             <Link
               to="/contact"
-              className="hidden px-4 py-1 transition-colors duration-300 rounded-md cursor-pointer text-lightgray hover:bg-black hover:text-white md:block"
+              className="hidden px-4 py-1 transition-colors duration-300 rounded-md cursor-pointer text-lightgray hover:bg-greengrass hover:text-white md:block"
             >
               {t("navbar.contact")}
             </Link>
             <Link
               to="/faqs"
-              className="hidden px-4 py-1 transition-colors duration-300 rounded-md cursor-pointer text-lightgray hover:bg-black hover:text-white md:block"
+              className="hidden px-4 py-1 transition-colors duration-300 rounded-md cursor-pointer text-lightgray hover:bg-greengrass hover:text-white md:block"
             >
               {t("navbar.faqs")}
             </Link>
@@ -112,9 +112,7 @@ const Navbar = () => {
           ) : (
             <div className="flex items-center ml-auto space-x-4">
               <Link to="/login">
-                <Button className="text-black bg-lightgray hover:bg-darkgreen">
-                  {t("navbar.login")}
-                </Button>
+                <Button>{t("navbar.login")}</Button>
               </Link>
               <Link to="/register">
                 <Button> {t("navbar.register")}</Button>

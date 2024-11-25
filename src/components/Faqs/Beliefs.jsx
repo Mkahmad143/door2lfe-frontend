@@ -9,8 +9,10 @@ const Beliefs = () => {
   return (
     <>
       <Navbar />
-      <div className="flex flex-col justify-center w-screen mx-auto mt-20 text-3xl text-white">
-        <h1 className="mt-16 text-6xl text-center">{t("beliefs.title")}</h1>
+      <div className="flex flex-col justify-center w-screen mx-auto mt-20 text-3xl ">
+        <h1 className="mt-16 text-6xl text-center text-grassGreen">
+          {t("beliefs.title")}
+        </h1>
         {t("beliefs.list", { returnObjects: true }).map((belief, index) => (
           <div
             key={index}

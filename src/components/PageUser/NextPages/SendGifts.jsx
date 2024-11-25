@@ -87,11 +87,11 @@ const Page2 = () => {
       <Navbar />
       <main className="min-h-screen relative w-screen max-w-[80vw] mx-auto pt-[5rem]">
         <Link to={"/userpage"}>
-          <h1 className="left-0 px-4 py-2 mx-auto text-white bg-blue-600 rounded-lg w-max md:absolute my-7">
+          <h1 className="left-0 px-4 py-2 mx-auto rounded-lg md:mx-16 hover:bg-green bg-greengrass w-max md:absolute my-7">
             {t("Go Back")}
           </h1>
         </Link>
-        <h2 className="mt-10 text-3xl font-bold text-center text-lightgray">
+        <h2 className="mt-10 text-3xl font-bold text-center text-greengrass">
           {t("Gifts To Receive")}
         </h2>
         <div className="flex flex-wrap w-full gap-6 my-16 mt-16">
@@ -99,7 +99,7 @@ const Page2 = () => {
             data.map((req, index) => (
               <Card
                 key={index}
-                className="mx-auto text-center bg-lightgray size-60 aspect-square"
+                className="mx-auto text-center bg-green size-60 aspect-square"
               >
                 <CardHeader>
                   {t("Request")} {index + 1}
@@ -273,15 +273,15 @@ const Page2 = () => {
                 <CardFooter className="flex justify-center gap-4 -mt-4">
                   <MdDone
                     onClick={() => handleSend(req.recipient._id)}
-                    className="p-1 text-4xl text-black transition-all rounded-lg cursor-pointer hover:scale-75 hover:bg-green "
+                    className="p-1 text-4xl text-black transition-all rounded-lg cursor-pointer bg-opacity-40 bg-greengrass hover:scale-75 hover:bg-green "
                   />
                 </CardFooter>
               </Card>
             ))
           ) : (
-            <div className="flex items-center mx-auto text-white bg-gray-800 min-w-screen">
+            <div className="flex items-center mx-auto rounded-md bg-green min-w-screen">
               <div className="w-full max-w-sm p-6 text-center bg-gray-900 rounded-lg shadow-lg">
-                <FiFrown className="mx-auto mb-4 text-6xl text-yellow-400 animate-bounce" />
+                <FiFrown className="mx-auto mb-4 text-6xl text-darkGreen animate-bounce" />
                 <h1 className="mb-4 text-3xl font-semibold text-gray-200">
                   {t("No Request Found")}
                 </h1>

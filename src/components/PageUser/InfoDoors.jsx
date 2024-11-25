@@ -12,7 +12,7 @@ const InfoDoors = () => {
   };
 
   return (
-    <div className="container mx-auto px-4 py-8 shadow-xl max-w-[90%] md:max-w-[80%] lg:max-w-[70%] bg-lightgray rounded-md">
+    <div className="container mx-auto px-4 py-8 shadow-xl max-w-[90%] md:max-w-[80%] lg:max-w-[70%] bg-green rounded-md">
       <h1 className="mb-8 text-2xl font-bold text-center md:text-3xl lg:text-4xl">
         {t("Opening Doors to Life")}
       </h1>
@@ -26,9 +26,9 @@ const InfoDoors = () => {
             ${
               selectedDoor === door
                 ? "bg-greengrass text-white"
-                : "bg-slate-800 text-white hover:bg-slate-950"
+                : "bg-slate-800 text-white hover:bg-greengrass"
             } 
-            hover:shadow-lg focus:ring-2 focus:ring-offset-2 focus:ring-greengrass focus:outline-none`}
+            hover:shadow-lg  focus:outline-none`}
           >
             {t(door.button)} {/* Translated button text */}
           </Button>

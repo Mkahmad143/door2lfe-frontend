@@ -82,7 +82,7 @@ const Register = () => {
   };
 
   return (
-    <main className="w-full p-4 rounded-xl bg-slate-200 sm:p-6 md:p-8">
+    <main className="w-full p-4 rounded-xl bg-green sm:p-6 md:p-8">
       {loading ? (
         <div className="flex items-center justify-center min-h-[27vh] ">
           <div className="text-2xl font-semibold animate-bounce">

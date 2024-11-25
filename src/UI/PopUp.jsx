@@ -93,8 +93,8 @@ export function PopUp({ username, email, id, doorStatus }) {
   };
 
   return (
-    <DialogContent className="sm:max-w-[425px] bg-lightgray text-gray border-gray">
-      <DialogHeader>
+    <DialogContent className="sm:max-w-[425px] bg-white text-black border-gray">
+      <DialogHeader className="flex flex-col gap-4">
         <DialogTitle>{username}</DialogTitle>
         <DialogDescription>{email}</DialogDescription>
         <Label htmlFor="Amount">{t("yourAmount")}</Label>
@@ -108,7 +108,9 @@ export function PopUp({ username, email, id, doorStatus }) {
 
       <DialogFooter>
         <div onClick={handleSend} className="mx-auto w-max">
-          <Button type="submit">{t("sendDonationRequest")}</Button>
+          <Button type="submit" className="hover:bg-darkGreen bg-greengrass">
+            {t("sendDonationRequest")}
+          </Button>
         </div>
       </DialogFooter>
       <ToastContainer stacked />

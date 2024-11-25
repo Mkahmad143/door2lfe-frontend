@@ -6,12 +6,14 @@ const Footer = () => {
 
   return (
     <div>
-      <footer className="w-full py-10 mx-auto text-lightgray md:mt-16 ">
+      <footer className="w-full mx-auto mt-6 text-white bg-gray md:mt-10 ">
         <div className="flex justify-center flex-col items-center border-t-[.08rem] border-b-[.08rem]">
           <div className="grid grid-cols-1 gap-12 pt-6 sm:grid-cols-2 lg:grid-cols-4">
             {/* Product Section */}
             <div className="space-y-4">
-              <h2 className="mb-4 text-xl font-bold">{t("footer.product")}</h2>
+              <h2 className="mb-4 text-xl font-bold text-grassGreen">
+                {t("footer.product")}
+              </h2>
               <ul className="space-y-2">
                 <li>
                   <a
@@ -66,7 +68,7 @@ const Footer = () => {
 
             {/* Office and Contact Section */}
             <div className="space-y-4">
-              <h2 className="mb-4 text-xl font-bold">
+              <h2 className="mb-4 text-xl font-bold text-grassGreen">
                 {t("footer.forEnglish")}
               </h2>
               <ul className="space-y-2">
@@ -99,7 +101,9 @@ const Footer = () => {
 
             {/* Links Section */}
             <div className="space-y-4">
-              <h2 className="mb-4 text-xl font-bold">{t("footer.links")}</h2>
+              <h2 className="mb-4 text-xl font-bold text-grassGreen">
+                {t("footer.links")}
+              </h2>
               <ul className="space-y-2">
                 <li>
                   <a
@@ -114,7 +118,9 @@ const Footer = () => {
 
             {/* PARA Section */}
             <div className="space-y-4">
-              <h2 className="mb-4 text-xl font-bold">{t("footer.para")}</h2>
+              <h2 className="mb-4 text-xl font-bold text-grassGreen">
+                {t("footer.para")}
+              </h2>
               <ul className="space-y-2">
                 <li>
                   <a

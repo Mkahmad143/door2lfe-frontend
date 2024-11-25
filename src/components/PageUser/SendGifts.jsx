@@ -8,7 +8,7 @@ const SendGifts = ({ requester }) => {
   const { t } = useTranslation(); // Initialize translation function
 
   return (
-    <Card className="flex flex-col items-center max-w-md p-6 mx-auto my-8 shadow-lg bg-lightgray">
+    <Card className="flex flex-col items-center max-w-md p-6 mx-auto my-8 shadow-lg bg-green">
       <CardTitle className="mb-2 text-xl font-bold text-center sm:text-2xl">
         {t("sendGiftsTitle")} {/* Use translation key */}
       </CardTitle>
@@ -23,7 +23,7 @@ const SendGifts = ({ requester }) => {
         </p>
         <div className="flex justify-center">
           <Link to={"/userpage/send-gift"}>
-            <Button className="text-sm text-black bg-green hover:bg-darkGreen sm:text-sm">
+            <Button className="text-sm text-black bg-greengrass hover:bg-grassGreen sm:text-sm">
               {t("sendGiftTo")} <strong>{requester}</strong>
             </Button>
           </Link>

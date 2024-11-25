@@ -44,7 +44,7 @@ const Transactions = () => {
             {t("goBack")} {/* Translated text */}
           </h1>
         </Link>
-        <div className="w-full max-h-[70vh] overflow-y-scroll max-w-4xl bg-lightgray rounded-lg shadow-lg">
+        <div className="w-full max-h-[70vh] overflow-y-scroll max-w-6xl bg-green rounded-lg shadow-lg">
           <div className="p-6 border-b">
             <h1 className="text-2xl font-bold text-gray-800">
               {t("recentTransactions")} {/* Translated text */}

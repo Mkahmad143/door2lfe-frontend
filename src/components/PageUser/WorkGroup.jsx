@@ -8,7 +8,7 @@ const WorkGroup = () => {
   const { t } = useTranslation(); // Initialize translation function
 
   return (
-    <Card className="max-w-md p-6 mx-auto my-8 text-black shadow-lg bg-lightgray">
+    <Card className="max-w-md p-6 mx-auto my-8 text-black shadow-lg bg-green">
       <CardTitle className="mb-2 text-xl font-bold text-center sm:text-2xl">
         {t("workGroupTitle")} {/* Use translation key */}
       </CardTitle>
@@ -20,7 +20,7 @@ const WorkGroup = () => {
       <CardContent className="mb-4 font-semibold text-center">
         <p className="mb-4 font-semibold">{t("workGroupContent")}</p>
         <Link to={"/userpage/workgroup"}>
-          <Button className="text-xs text-black bg-green hover:bg-darkGreen sm:text-sm">
+          <Button className="mt-5 text-xs text-black bg-greengrass hover:bg-grassGreen sm:text-sm">
             {t("viewWorkGroupButton")} {/* Use translation key */}
           </Button>
         </Link>

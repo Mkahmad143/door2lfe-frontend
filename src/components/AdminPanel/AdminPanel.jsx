@@ -19,7 +19,7 @@ const AdminPanel = () => {
       <Navbar />
       <div className="flex flex-col min-h-screen text-gray-100 mt-14 bg-gradient-to-r from-gray-800 via-gray-900 to-black">
         <header className="text-center ">
-          <h1 className="text-4xl font-extrabold text-white drop-shadow-md">
+          <h1 className="text-4xl font-extrabold text-grassGreen drop-shadow-md">
             {t("Admin Dashboard")} {/* Translated text */}
           </h1>
           <p className="mt-2 text-lightgray">
@@ -30,7 +30,7 @@ const AdminPanel = () => {
         <main className="flex flex-col items-center justify-center px-4 mt-16 lg:mt-[9rem]">
           <div className="grid w-full max-w-4xl grid-cols-1 gap-6 md:grid-cols-3">
             <button
-              className="flex flex-col items-center justify-center px-6 py-4 transition transform rounded-lg shadow-lg bg-[#58f5d8] hover:bg-greengrass hover:scale-105 hover:text-white"
+              className="flex flex-col items-center justify-center px-6 py-4 transition transform rounded-lg shadow-lg bg-grassGreen hover:bg-greengrass hover:scale-105 hover:text-white"
               onClick={() => navigate("/admin/dashboard/referrals")}
             >
               <span className="text-xl font-bold">{t("Referrals Tree")}</span>{" "}
@@ -42,7 +42,7 @@ const AdminPanel = () => {
             </button>
 
             <button
-              className="flex flex-col items-center justify-center px-6 py-4 transition transform bg-[#58f5d8] rounded-lg shadow-lg  hover:scale-105"
+              className="flex flex-col items-center justify-center px-6 py-4 transition transform rounded-lg shadow-lg bg-grassGreen hover:scale-105"
               onClick={() => navigate("/admin/dashboard/mainBank")}
             >
               <span className="text-xl font-bold">{t("Main Bank")}</span>{" "}
@@ -53,7 +53,7 @@ const AdminPanel = () => {
               {/* Translated text */}
             </button>
             <button
-              className="flex flex-col items-center justify-center px-6 py-4 transition transform bg-[#58f5d8] rounded-lg shadow-lg  hover:scale-105"
+              className="flex flex-col items-center justify-center px-6 py-4 transition transform rounded-lg shadow-lg bg-grassGreen hover:scale-105"
               onClick={() => navigate("/admin/dashboard/getUser")}
             >
               <span className="text-xl font-bold">{t("See Single User")}</span>{" "}

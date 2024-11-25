@@ -7,7 +7,7 @@ const PrintCertificate = () => {
   const { t } = useTranslation(); // Initialize translation function
 
   return (
-    <Card className="flex flex-col items-center max-w-md p-6 mx-auto my-8 shadow-lg bg-lightgray">
+    <Card className="flex flex-col items-center max-w-md p-6 mx-auto my-8 shadow-lg bg-green">
       <CardTitle className="mb-2 text-xl font-bold text-center sm:text-2xl">
         {t("printCertificateTitle")} {/* Use translation key */}
       </CardTitle>
@@ -21,7 +21,7 @@ const PrintCertificate = () => {
           {t("printCertificateInstructions")} {/* Use translation key */}
         </p>
         <div className="flex justify-center">
-          <Button className="text-xs text-black bg-green hover:bg-darkGreen sm:text-sm">
+          <Button className="text-xs text-black bg-greengrass hover:bg-grassGreen sm:text-sm">
             {t("print")} {/* Use translation key */}
           </Button>
         </div>

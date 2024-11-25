@@ -118,8 +118,8 @@ const ReferralTree = () => {
   return (
     <>
       <Navbar />
-      <div className="relative mt-16 text-white lg:mt-0 bg-gray tree-container">
-        <div className="left-0 top-[12rem] grid grid-cols-2 mx-16 rounded-lg w-[14rem] h-[8rem] place-items-center text-gray bg-lightgray md:absolute xl:left-[60rem] xl:top-[4rem]  my-7">
+      <div className="min-h-screen mt-16 mb-16 text-white bg-white ">
+        <div className="left-0 top-[12rem] grid grid-cols-2 mx-16 rounded-lg w-[14rem] h-[8rem] place-items-center text-gray bg-green md:absolute xl:left-[60rem] xl:top-[4rem]  my-7">
           <div className="flex flex-col gap-[.50rem] px-2 test-gray">
             <p className="bg-[#59f2d9] w-4 h-4 rounded-full"></p>
             <p className="bg-[#17bea2] w-4 h-4 rounded-full"></p>
@@ -134,13 +134,13 @@ const ReferralTree = () => {
           </div>
         </div>
         <Link to={"/userpage"}>
-          <h1 className="left-0 px-4 py-2 mx-16 text-white bg-blue-600 rounded-lg md:absolute my-7">
+          <h1 className="left-0 px-4 py-2 mx-auto rounded-lg md:mx-16 bg-greengrass hover:bg-green w-max md:absolute my-7">
             {t("Go Back")}
           </h1>
         </Link>
         <div className="flex flex-col items-center justify-center w-full">
-          <h2 className="mx-auto text-4xl text-white">{t("Referral Tree")}</h2>
-          <h2 className="mx-auto mt-2 text-sm text-center text-lightgray">
+          <h2 className="mx-auto text-4xl text-black">{t("Referral Tree")}</h2>
+          <h2 className="mx-auto mt-2 text-sm text-center text-black ">
             {t(
               "Complete your 3rd Generation & Send donations request By Clicking on it"
             )}
@@ -152,7 +152,9 @@ const ReferralTree = () => {
             <div className="root-node">{renderedNodes}</div>
           </>
         ) : (
-          <p className="text-white animate-spin transform-origin text-7xl">.</p>
+          <h1 className="w-full mx-auto mt-10 text-center text-black animate-spin transform-origin text-7xl ">
+            .
+          </h1>
         )}
       </div>
       <Footer />

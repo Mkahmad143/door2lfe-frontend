@@ -102,11 +102,11 @@ const ReceviceGiftsFromOwner = () => {
       <Navbar />
       <main className="min-h-screen relative w-screen max-w-[80vw] mx-auto pt-[5rem] md:pt-[8rem]">
         <Link to={"/userpage"}>
-          <h1 className="left-0 px-4 py-2 mx-auto text-white bg-blue-600 rounded-lg w-max md:absolute md:m-0 my-7">
+          <h1 className="left-0 px-4 py-2 mx-auto rounded-lg md:mx-16 hover:bg-green bg-greengrass w-max md:absolute my-7">
             {t("Go Back")}
           </h1>
         </Link>
-        <h2 className="mb-8 text-4xl font-bold text-center text-lightgray">
+        <h2 className="mb-8 text-4xl font-bold text-center text-greengrass">
           {t("Manage Your Gifts and Payments")}
         </h2>
 
@@ -274,15 +274,15 @@ const ReceviceGiftsFromOwner = () => {
                   <CardFooter className="flex justify-center gap-4 mt-4">
                     <MdDone
                       onClick={() => handleSend(req.requester._id)}
-                      className="p-1 text-4xl text-black transition-all rounded-lg cursor-pointer hover:scale-75 hover:bg-green "
+                      className="p-1 text-4xl text-black transition-all rounded-lg cursor-pointer bg-greengrass bg-opacity-40 hover:scale-75 hover:bg-green "
                     />
                   </CardFooter>
                 </Card>
               ))
             ) : (
-              <div className="flex items-center mx-auto text-white bg-gray-800 min-w-screen">
+              <div className="flex items-center mx-auto rounded-md bg-green min-w-screen">
                 <div className="w-full max-w-sm p-6 text-center bg-gray-900 rounded-lg shadow-lg">
-                  <FiFrown className="mx-auto mb-4 text-6xl text-yellow-400 animate-bounce" />
+                  <FiFrown className="mx-auto mb-4 text-6xl text-darkGreen animate-bounce" />
                   <h1 className="mb-4 text-3xl font-semibold text-gray-200">
                     {t("No Request Found")}
                   </h1>

@@ -10,7 +10,7 @@ module.exports = {
         slate800: "#1E293B", // Slate-800 color for background
         greengrass: "#4CAF50",
         gray: "#193940", // bg
-        lightgray: "#BAC8D9", // text
+        lightgray: "#000", // text
         green: "#9Bf272", // buttons
         darkGreen: "#7ABF5A", // hover
       },

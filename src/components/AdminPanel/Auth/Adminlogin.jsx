@@ -9,7 +9,7 @@ import { AiFillEye, AiFillEyeInvisible } from "react-icons/ai"; // Import icons
 import { useTranslation } from "react-i18next"; // Import useTranslation hook
 
 // Sample logo component
-const Logo = () => <div className="text-2xl font-bold">Admin Panel</div>;
+const Logo = () => <div className="text-2xl font-bold ">Admin Panel</div>;
 
 const AdminLogin = () => {
   const { t } = useTranslation(); // Initialize translation hook
@@ -73,7 +73,7 @@ const AdminLogin = () => {
     <>
       <Navbar />
       <div className="flex items-center justify-center min-h-screen">
-        <div className="w-full max-w-md p-8 rounded-lg shadow-lg bg-lightgray">
+        <div className="w-full max-w-md p-8 rounded-lg shadow-lg bg-green">
           <div className="flex justify-center mb-6">
             <Logo />
           </div>
@@ -132,7 +132,7 @@ const AdminLogin = () => {
             {/* Login Button */}
             <button
               type="submit"
-              className="w-full py-2 font-semibold text-white transition duration-200 bg-blue-500 rounded-lg hover:bg-blue-600"
+              className="w-full py-2 font-semibold text-white transition duration-200 rounded-lg bg-grassGreen hover:bg-greengrass"
             >
               {t("Login")} {/* Translated text */}
             </button>

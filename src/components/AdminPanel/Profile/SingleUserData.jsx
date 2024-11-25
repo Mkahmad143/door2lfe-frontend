@@ -58,12 +58,12 @@ const SingleUserData = () => {
       <ToastContainer position="top-right" autoClose={1000} />
       <div className="relative min-h-screen p-6 bg-gradient-to-br from-gray-100 to-blue-50">
         <Link to={"/admin/dashboard"}>
-          <h1 className="top-0 left-0 px-4 py-2 mx-auto bg-blue-600 rounded-lg md:absolute w-max md:mx-16 my-7">
-            {t("goBack")}
+          <h1 className="top-0 left-0 px-4 py-2 mx-auto text-white rounded-lg md:mx-16 hover:bg-green bg-greengrass w-max md:absolute my-7">
+            {t("Go Back")}
           </h1>
         </Link>
         <div className="container mx-auto">
-          <h1 className="mb-6 text-3xl font-bold text-center text-lightgray">
+          <h1 className="mb-6 text-3xl font-bold text-center text-grassGreen">
             {t("User Details")}
           </h1>
         </div>

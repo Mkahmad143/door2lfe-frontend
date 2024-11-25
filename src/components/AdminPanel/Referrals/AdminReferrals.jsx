@@ -72,15 +72,15 @@ const AdminReferrals = () => {
   return (
     <>
       <Navbar />
-      <div className="relative min-h-screen text-white tree-container">
-        <div className="left-0 top-[12rem] grid grid-cols-2 mx-16 rounded-lg w-[14rem] h-[8rem] place-items-center text-gray bg-lightgray md:absolute xl:left-[60rem] xl:top-[4rem] my-7">
+      <div className="relative min-h-screen tree-container">
+        <div className="left-0 top-[12rem] grid grid-cols-2 mx-16 rounded-lg w-[14rem] h-[8rem] place-items-center text-gray bg-green md:absolute xl:left-[60rem] xl:top-[4rem] my-7">
           <div className="flex flex-col gap-[.50rem] px-2 test-gray">
             <p className="bg-[#59f2d9] w-4 h-4 rounded-full"></p>
             <p className="bg-[#17bea2] w-4 h-4 rounded-full"></p>
             <p className="bg-[#107766] w-4 h-4 rounded-full"></p>
             <p className="bg-[#154c42] w-4 h-4 rounded-full"></p>
           </div>
-          <div className="px-2 -ml-16 test-gray">
+          <div className="px-2 -ml-16 ">
             <h1>{t("founder")}</h1> {/* Translated text */}
             <h1>{t("firstGen")}</h1> {/* Translated text */}
             <h1>{t("secondGen")}</h1> {/* Translated text */}
@@ -88,12 +88,14 @@ const AdminReferrals = () => {
           </div>
         </div>
         <Link to={"/admin/dashboard"}>
-          <h1 className="top-0 left-0 px-4 py-2 mx-auto bg-blue-600 rounded-lg md:absolute w-max md:mx-16 my-7">
-            Go Back
+          <h1 className="top-0 left-0 px-4 py-2 mx-auto text-white rounded-lg md:mx-16 hover:bg-green bg-greengrass w-max md:absolute my-7">
+            {t("Go Back")}
           </h1>
         </Link>
         <div className="flex flex-col items-center justify-center w-full mx-16">
-          <h2 className="mx-auto text-4xl text-white">{t("referralTree")}</h2>{" "}
+          <h2 className="mx-auto my-10 text-4xl font-extrabold text-grassGreen">
+            {t("referralTree")}
+          </h2>{" "}
           {/* Translated text */}
           {currentNode !== referralTree && (
             <button

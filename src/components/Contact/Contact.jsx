@@ -14,7 +14,7 @@ const Contact = () => {
 
       {/* Contact Section */}
       <div className="flex items-center justify-center min-h-screen p-6 mt-10 bg-gray-400">
-        <div className="grid w-full max-w-4xl grid-cols-1 gap-4 p-6 rounded-xl lg:grid-cols-2 bg-lightgray">
+        <div className="grid w-full max-w-4xl grid-cols-1 gap-4 p-6 bg-gray-200 border rounded-xl lg:grid-cols-2 bg-green">
           {/* Contact Details */}
           <div className="flex flex-col gap-2">
             <div className="space-y-8">
@@ -77,7 +77,9 @@ const Contact = () => {
                 rows="4"
               />
             </div>
-            <Button>{t("contact.form.submitButton")}</Button>
+            <Button className="bg-gray">
+              {t("contact.form.submitButton")}
+            </Button>
           </div>
         </div>
       </div>

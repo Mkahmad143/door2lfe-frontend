@@ -13,7 +13,7 @@ const images = ["slide1.jpg", "slide2.jpg", "slide3.jpg"];
 const CarouselComponent = () => {
   return (
     <div className="w-screen  flex items-center justify-center xl:pt-[1em]  sm:px-0">
-      <CarouselUI className="w-screen mx-auto  md:aspect-video">
+      <CarouselUI className="w-screen mx-auto md:aspect-video">
         {/* Full width with a max width */}
         <CarouselContent>
           {images.map((img, index) => (

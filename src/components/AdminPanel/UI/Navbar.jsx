@@ -25,8 +25,8 @@ const Navbar = () => {
   };
 
   return (
-    <nav className="sticky top-0 z-10 flex items-center justify-between w-full p-4 text-white bg-white shadow-md lg:px-16 bg-opacity-20 backdrop-blur-md">
-      <div className="text-2xl font-bold">{t("Admin Panel")}</div>{" "}
+    <nav className="sticky top-0 z-10 flex items-center justify-between w-full p-4 text-white shadow-md bg-grassGreen lg:px-16 bg-opacity-90 backdrop-blur-md">
+      <div className="text-2xl font-bold text-black/70">{t("Admin Panel")}</div>{" "}
       {/* Translated text */}
       {localStorage.getItem("adminLogin") ? (
         <button
@@ -38,7 +38,7 @@ const Navbar = () => {
       ) : (
         <button
           onClick={handleLogin}
-          className="px-4 py-2 ml-auto text-black transition rounded bg-green hover:bg-darkGreen"
+          className="px-4 py-2 ml-auto text-black transition rounded bg-grassGreen hover:bg-darkGreen"
         >
           {t("Login")} {/* Translated text */}
         </button>

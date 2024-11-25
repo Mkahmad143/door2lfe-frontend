@@ -7,8 +7,8 @@ const InfoOnDon = () => {
   const { t } = useTranslation(); // Initialize translation function
 
   return (
-    <div className="p-8 rounded-lg shadow-lg bg-lightgray">
-      <h2 className="mb-8 text-2xl font-bold text-center text-gray-700">
+    <div className="p-8 rounded-lg shadow-lg ">
+      <h2 className="mb-8 text-2xl font-bold text-center text-grassGreen">
         {t("informationOnDonationsTitle")} {/* Use translation key */}
       </h2>
 

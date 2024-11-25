@@ -62,7 +62,7 @@ const ReceiveGifts = () => {
   }
 
   return (
-    <Card className="max-w-md p-6 mx-auto my-8 shadow-lg bg-lightgray">
+    <Card className="max-w-md p-6 mx-auto my-8 shadow-lg bg-green">
       <CardTitle className="mb-2 text-xl font-bold text-center sm:text-2xl">
         {t("viewGiftsTitle")} {/* Use translation key */}
       </CardTitle>
@@ -74,7 +74,7 @@ const ReceiveGifts = () => {
       <CardContent className="text-center">
         <p className="mb-4 font-semibold">{t("currentDoorLabel")}</p>
         <Link to={`/userpage/receive-gift`}>
-          <Button className="text-xs text-black bg-green hover:bg-darkGreen sm:text-sm">
+          <Button className="text-xs text-black bg-greengrass hover:bg-grassGreen sm:text-sm">
             {currentDoor ? `${t("door")} ${currentDoor - 1}` : t("Door 14")}
           </Button>
         </Link>

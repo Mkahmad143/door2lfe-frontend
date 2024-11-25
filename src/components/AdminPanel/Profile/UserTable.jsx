@@ -126,9 +126,9 @@ const UserTable = () => {
 
   if (!users.length) {
     return (
-      <div className="flex items-center justify-center h-[60vh] mx-auto my-auto text-white bg-gray-800 min-w-screen">
+      <div className="flex items-center justify-center h-[60vh] mx-auto my-auto text-white bg-green min-w-screen">
         <div className="w-full max-w-sm p-6 text-center bg-gray-900 rounded-lg shadow-lg">
-          <FiFrown className="mx-auto mb-4 text-6xl text-yellow-400 animate-bounce" />
+          <FiFrown className="mx-auto mb-4 text-6xl text-greengrass animate-bounce" />
           <h1 className="mb-4 text-3xl font-semibold text-gray-200">
             {"No User Found"}
           </h1>
@@ -144,21 +144,21 @@ const UserTable = () => {
         <h1 className="ml-3 text-xl font-bold text-lightgray">All Data</h1>
         <button
           variant="outline"
-          className="flex items-center p-1 px-2 text-white transition-colors duration-500 rounded-2xl hover:bg-black"
+          className="flex items-center p-1 px-2 text-white transition-colors duration-500 rounded-md bg-greengrass hover:bg-green"
           onClick={downloadExcel}
         >
           <FaDownload className="mr-2 text-2xl text-white md:text-lg" />
           <span className="hidden mt-1 md:block">Download Data</span>
         </button>
       </div>
-      <Card className="w-full p-2 mx-2">
+      <Card className="w-full mx-2 rounded-sm bg-green">
         <div className="h-[50vh] lg:h-[80vh] overflow-scroll">
           <Table>
             <TableCaption>
               List of users and their highest open door
             </TableCaption>
             <TableHeader>
-              <TableRow>
+              <TableRow className=" bg-grassGreen">
                 <TableCell className="font-medium">Sr#</TableCell>
                 <TableCell className="font-medium">Username</TableCell>
                 <TableCell className="font-medium">Email</TableCell>

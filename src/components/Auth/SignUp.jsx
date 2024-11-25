@@ -144,7 +144,7 @@ const SignUp = () => {
     <>
       <Navbar />
       <div className="flex items-center justify-center min-h-[90vh] mt-16 py-5 bg-gray-Dark">
-        <div className="w-full max-w-md p-8 rounded-lg shadow-lg bg-lightgray">
+        <div className="w-full max-w-md p-8 rounded-lg shadow-lg bg-green">
           <h2 className="mb-6 text-2xl font-bold text-center text-gray-800">
             {t("signUp.title")}
           </h2>
@@ -291,7 +291,7 @@ const SignUp = () => {
               <button
                 type="button"
                 onClick={handleRegister}
-                className="w-[150px] py-2 px-2 bg-green hover:bg-darkGreen text-black font-semibold rounded-lg transition duration-200 mt-4"
+                className="w-[150px] py-2 px-2 bg-grassGreen hover:bg-darkGreen text-black font-semibold rounded-lg transition duration-200 mt-4"
               >
                 {t("signUp.register")}
               </button>
